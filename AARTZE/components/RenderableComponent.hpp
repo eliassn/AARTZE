@@ -1,13 +1,15 @@
 #pragma once
 #include <cstdint>
+#include <iostream>
 
-// Simple renderable descriptor for a mesh + material
+/**
+ * @brief Data to render an entity (mesh + material + LOD support).
+ */
 struct RenderableComponent
 {
-    uint32_t meshId = 0;
-    uint32_t materialId = 0; // reserved for future registry
-    int lodLevel = 0;
+    uint32_t meshId = 0;      // Mesh identifier (linked to GPU buffer)
+    uint32_t materialId = 0;  // Material/shader ID
+    int lodLevel = 0;         // Level of detail (0 = highest)
     bool castShadows = true;
     bool isVisible = true;
 };
-

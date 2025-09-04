@@ -10,7 +10,33 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 include_directories(thirdparty/glm-master)
+
+# Ensure vcpkg toolchain is picked up when presets fail to pass it on first configure
+if(NOT DEFINED CMAKE_TOOLCHAIN_FILE)
+  set(_VCPKG_TOOLCHAIN "${CMAKE_SOURCE_DIR}/vcpkg/scripts/buildsystems/vcpkg.cmake")
+  if(EXISTS "${_VCPKG_TOOLCHAIN}")
+    set(CMAKE_TOOLCHAIN_FILE "${_VCPKG_TOOLCHAIN}" CACHE STRING "" FORCE)
+    include("${_VCPKG_TOOLCHAIN}")
+  endif()
+endif()
+
 include(FetchContent)
+
+# Robust vcpkg discovery for configure-from-preset issues
+# If the toolchain wasn't applied yet, try the local vcpkg_installed tree so
+# find_package(assimp CONFIG) can succeed during configure.
+if(NOT DEFINED CMAKE_TOOLCHAIN_FILE)
+  # Try to locate assimp config inside common local vcpkg layout
+  foreach(_base "${CMAKE_SOURCE_DIR}" "${CMAKE_BINARY_DIR}")
+    foreach(_trip "x64-windows" "x86-windows")
+      set(_cand "${_base}/vcpkg_installed/${_trip}/share/assimp/assimp-config.cmake")
+      if(EXISTS "${_cand}")
+        get_filename_component(_assimp_dir "${_cand}" DIRECTORY)
+        set(assimp_DIR "${_assimp_dir}" CACHE PATH "")
+      endif()
+    endforeach()
+  endforeach()
+endif()
 
 # ===== JSON (Header Only) =====
 FetchContent_Declare(
@@ -62,7 +88,16 @@ if(BUILD_ENGINE)
         ${CMAKE_SOURCE_DIR}/AARTZE/**/*.cpp
         ${CMAKE_SOURCE_DIR}/AARTZE/systems/**/*.cpp
     )
-    list(FILTER ENGINE_SOURCES EXCLUDE REGEX "(/|\\)AARTZE(/|\\)editor(/|\\)")
+    # Exclude editor sources from the core engine by default.
+    # Use only forward slashes in regex as CMake normalizes paths.
+    list(FILTER ENGINE_SOURCES EXCLUDE REGEX ".*/AARTZE/editor/.*")
+    # Exclude experimental ui2 path which is incomplete
+    list(FILTER ENGINE_SOURCES EXCLUDE REGEX ".*/AARTZE/ui2/.*")
+
+    # Re-include non-UI editor utilities needed by runtime
+    list(APPEND ENGINE_SOURCES
+        ${CMAKE_SOURCE_DIR}/AARTZE/editor/EditorActions.cpp
+        ${CMAKE_SOURCE_DIR}/AARTZE/editor/EditorState.cpp)
     list(APPEND ENGINE_SOURCES
         ${CMAKE_SOURCE_DIR}/AARTZE/utils/ScriptLoader.cpp
         ${CMAKE_SOURCE_DIR}/AARTZE/thirdparty/stb_impl.cpp)
@@ -156,9 +191,56 @@ endif()
     endif()
     target_compile_definitions(AARTZE_lib PRIVATE $<$<BOOL:${OpenAL_FOUND}>:HAVE_OPENAL>)
 
+    # Toggle experimental Slate-like UI2 (OFF by default due to WIP headers)
+    option(USE_UI2 "Enable UI2 (experimental)" OFF)
+    if(USE_UI2)
+        target_compile_definitions(AARTZE_lib PUBLIC USE_UI2)
+    endif()
+
+    # Optional ImGui-based Editor UI (off by default).
+    # Enable with: -DBUILD_AARTZE_IMGUI_EDITOR=ON
+    option(BUILD_AARTZE_IMGUI_EDITOR "Build AARTZE ImGui editor UI" OFF)
+    if(BUILD_AARTZE_IMGUI_EDITOR)
+        # Use a local Dear ImGui checkout instead of fetching from network.
+        # Set IMGUI_DIR to point to your imgui folder (default: thirdparty/imgui).
+        set(IMGUI_DIR ${CMAKE_SOURCE_DIR}/thirdparty/imgui CACHE PATH "Path to local Dear ImGui sources")
+        if(NOT EXISTS ${IMGUI_DIR}/imgui.h)
+            message(FATAL_ERROR "Dear ImGui not found at IMGUI_DIR='${IMGUI_DIR}'. Set -DIMGUI_DIR=path/to/imgui or place imgui sources under thirdparty/imgui.")
+        endif()
+
+        add_library(imgui STATIC
+            ${IMGUI_DIR}/imgui.cpp
+            ${IMGUI_DIR}/imgui_draw.cpp
+            ${IMGUI_DIR}/imgui_tables.cpp
+            ${IMGUI_DIR}/imgui_widgets.cpp
+            ${IMGUI_DIR}/backends/imgui_impl_glfw.cpp
+            ${IMGUI_DIR}/backends/imgui_impl_opengl3.cpp
+            ${IMGUI_DIR}/misc/cpp/imgui_stdlib.cpp
+        )
+        target_include_directories(imgui PUBLIC ${IMGUI_DIR} ${IMGUI_DIR}/backends)
+        target_link_libraries(imgui PUBLIC glfw OpenGL::GL)
+        target_compile_definitions(imgui PUBLIC IMGUI_IMPL_OPENGL_LOADER_GLAD)
+
+        # Make ImGui headers available to engine sources that embed UI hooks
+        target_include_directories(AARTZE_lib PUBLIC ${IMGUI_DIR} ${IMGUI_DIR}/backends)
+        target_compile_definitions(AARTZE_lib PUBLIC AARTZE_WITH_IMGUI=1)
+
+        # AARTZE ImGui editor library
+        add_library(AARTZE_imgui_editor STATIC
+            ${CMAKE_SOURCE_DIR}/AARTZE/editor/AartzeEditor.cpp
+        )
+        target_include_directories(AARTZE_imgui_editor PUBLIC ${CMAKE_SOURCE_DIR}/AARTZE/editor)
+        target_link_libraries(AARTZE_imgui_editor PUBLIC imgui AARTZE_lib)
+        target_compile_definitions(AARTZE_imgui_editor PUBLIC IMGUI_DEFINE_MATH_OPERATORS)
+    endif()
+
 # ===== Game Executable =====
     add_executable(AARTZE main.cpp)
     target_link_libraries(AARTZE PRIVATE AARTZE_lib )
+    if(BUILD_AARTZE_IMGUI_EDITOR)
+        target_link_libraries(AARTZE PRIVATE imgui AARTZE_imgui_editor)
+        target_compile_definitions(AARTZE PRIVATE AARTZE_WITH_IMGUI=1)
+    endif()
 
     # Copy runtime resources next to the executable (if present)
     if(EXISTS ${CMAKE_SOURCE_DIR}/assets)

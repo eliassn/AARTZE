@@ -18,7 +18,10 @@
       "cacheVariables": {
         "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/vcpkg/scripts/buildsystems/vcpkg.cmake",
         "VCPKG_MANIFEST_MODE": "ON",
-        "VCPKG_TARGET_TRIPLET": "x64-windows"
+        "VCPKG_TARGET_TRIPLET": "x64-windows",
+        "BUILD_AARTZE_IMGUI_EDITOR": "ON",
+        "IMGUI_DIR": "${sourceDir}/thirdparty/imgui",
+        "USE_UI2": "OFF"
       }
     }
   ],

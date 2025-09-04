@@ -40,8 +40,19 @@ void Application::InitWindow(int width, int height, const char* title)
     }
 
     int fbw, fbh;
-    glfwGetFramebufferSize(m_window, &fbw, &fbh);
-    glViewport(0, 0, fbw, fbh);
+  glfwGetFramebufferSize(m_window, &fbw, &fbh);
+  glViewport(0, 0, fbw, fbh);
+
+#ifdef AARTZE_WITH_IMGUI
+  // Initialize Dear ImGui context and backends
+  IMGUI_CHECKVERSION();
+  ImGui::CreateContext();
+  ImGuiIO& io = ImGui::GetIO(); (void)io;
+  ImGui_ImplGlfw_InitForOpenGL(m_window, true);
+  ImGui_ImplOpenGL3_Init("#version 330");
+  aartze::EditorUI::ApplyTheme();
+  m_imguiReady = true;
+#endif
 }
 
 Application::Application(int width, int height, const char* title)
@@ -65,21 +76,31 @@ Application::Application(int width, int height, const char* title)
 
 Application::~Application()
 {
-    m_audio.Shutdown();
-    m_editor.Shutdown();
+  m_audio.Shutdown();
+  m_editor.Shutdown();
     
     if (gLua) { gLua->Shutdown(); gLua.reset(); }
-    m_renderingSystem.Shutdown();
-    if (gSystemManager)
-    {
-        gSystemManager->textRenderingSystem.Shutdown();
-        gSystemManager.reset();
-    }
-    if (m_window)
-    {
-        glfwDestroyWindow(m_window);
-        glfwTerminate();
-    }
+  m_renderingSystem.Shutdown();
+  if (gSystemManager)
+  {
+    gSystemManager->textRenderingSystem.Shutdown();
+    gSystemManager.reset();
+  }
+
+#ifdef AARTZE_WITH_IMGUI
+  if (m_imguiReady)
+  {
+    ImGui_ImplOpenGL3_Shutdown();
+    ImGui_ImplGlfw_Shutdown();
+    ImGui::DestroyContext();
+    m_imguiReady = false;
+  }
+#endif
+  if (m_window)
+  {
+    glfwDestroyWindow(m_window);
+    glfwTerminate();
+  }
 }
 
 void Application::Run()
@@ -105,16 +126,28 @@ void Application::Run()
         }
         int w, h;
         glfwGetFramebufferSize(m_window, &w, &h);
-        m_editor.Resize(w, h);
-        m_editor.Tick(deltaTime);
-        
-        if (gSystemManager)
-            gSystemManager->textRenderingSystem.Render(w, h);
-        // Render UE-like editor shell (non-modal)
-        m_editor.Render();
-        
+    m_editor.Resize(w, h);
+    m_editor.Tick(deltaTime);
 
-        glfwSwapBuffers(m_window);
+    if (gSystemManager)
+        gSystemManager->textRenderingSystem.Render(w, h);
+
+#ifdef AARTZE_WITH_IMGUI
+    if (m_imguiReady)
+    {
+        ImGui_ImplOpenGL3_NewFrame();
+        ImGui_ImplGlfw_NewFrame();
+        ImGui::NewFrame();
+        m_aartzeUI.Draw();
+        ImGui::Render();
+        ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+    }
+#else
+    // Render UE-like editor shell (non-modal)
+    m_editor.Render();
+#endif
+
+    glfwSwapBuffers(m_window);
     }
 }
 

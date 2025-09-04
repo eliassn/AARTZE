@@ -9,8 +9,27 @@
 #include "ECSPreset.hpp"
 // Legacy ImGui UI removed in favor of UE-like shell
 #include "../audio/AudioSystem.hpp"
-// AARTZE UI2 (Slate-like) shell
-#include "../ui2/EditorShell.hpp"
+// AARTZE UI2 (Slate-like) shell (optional)
+#ifdef USE_UI2
+#  include "../ui2/EditorShell.hpp"
+#else
+namespace ui2 {
+struct EditorShell {
+    void Initialize(GLFWwindow*) {}
+    void Resize(int, int) {}
+    void Tick(float) {}
+    void Render() {}
+    void Shutdown() {}
+};
+}
+#endif
+
+#ifdef AARTZE_WITH_IMGUI
+#  include <imgui.h>
+#  include <backends/imgui_impl_glfw.h>
+#  include <backends/imgui_impl_opengl3.h>
+#  include "../editor/AartzeEditor.h"
+#endif
 
 class Application
 {
@@ -28,4 +47,9 @@ class Application
     // UIManager removed
     AudioSystem m_audio;
     ui2::EditorShell m_editor;
+
+#ifdef AARTZE_WITH_IMGUI
+    bool m_imguiReady{false};
+    aartze::EditorUI m_aartzeUI;
+#endif
 };
