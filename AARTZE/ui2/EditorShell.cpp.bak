@@ -1,0 +1,73 @@
+﻿#include "EditorShell.hpp"`r`n#include "StyleSet.hpp"`r`n#include "SlotPreview.hpp"`r`n#include <imgui.h>`r`n#include <GLFW/glfw3.h>
+
+namespace ui2 {
+
+void EditorShell::Initialize(GLFWwindow* window)
+{
+    m_window = window;
+    // Style
+    SetStyle(GetStyle()); // keep defaults
+    m_renderer.init();
+
+    // Layout
+    m_dock = std::make_shared<DockSpace>();
+    m_preview = std::make_shared<SlotPreview>(); m_preview->setWindow(window);
+    auto left   = std::make_shared<TabBar>(); left->add(std::make_shared<Tab>("Outliner"));
+    auto right  = std::make_shared<TabBar>(); right->add(std::make_shared<Tab>("Details"));
+    auto bottom = std::make_shared<TabBar>(); bottom->add(std::make_shared<Tab>("Content"));
+    m_dock->setCenter(m_preview);
+    m_dock->setLeft(left, 0.23f);
+    m_dock->setRight(right, 0.27f);
+    m_dock->setBottom(bottom, 0.26f);
+}
+
+void EditorShell::Resize(int w,int h) { m_w=w; m_h=h; }
+
+void EditorShell::Tick(float dt)
+{
+    (void)dt;
+    if (m_preview) m_preview->tick();
+    m_dock->layout({0,0,(float)m_w,(float)m_h});
+}
+
+void EditorShell::Render()
+{
+    m_draw.clear();
+    // Background fill
+    auto s = GetStyle();
+    unsigned bg = ((unsigned)(s.WindowBg.a*255)<<24)|((unsigned)(s.WindowBg.b*255)<<16)|((unsigned)(s.WindowBg.g*255)<<8)|((unsigned)(s.WindowBg.r*255));
+    m_draw.rectFilled(0,0,(float)m_w,(float)m_h, bg);
+    // Menu/Toolbar/Status rows
+    unsigned bar = ((unsigned)(s.PanelBg.a*255)<<24)|((unsigned)(s.PanelBg.b*255)<<16)|((unsigned)(s.PanelBg.g*255)<<8)|((unsigned)(s.PanelBg.r*255));
+    const float menuH=28.0f, toolH=36.0f, statusH=22.0f;
+    m_draw.rectFilled(0,0,(float)m_w,menuH, bar);
+    m_draw.rectFilled(0,menuH,(float)m_w,toolH, bar);
+    // Toolbar placeholders
+    float bx=8.0f, by=menuH+6.0f; float bw=28.0f, bh=24.0f; unsigned accent=((unsigned)(s.Accent.a*255)<<24)|((unsigned)(s.Accent.b*255)<<16)|((unsigned)(s.Accent.g*255)<<8)|((unsigned)(s.Accent.r*255));
+    for(int i=0;i<10;++i){ m_draw.rectFilled(bx,by,bw,bh,accent); bx+=bw+6.0f; }
+    // Panels in remaining area
+    m_dock->layout({0,menuH+toolH,(float)m_w,(float)m_h-(menuH+toolH+statusH)});
+    m_dock->paint(m_draw);
+    // Status bar
+    m_draw.rectFilled(0,(float)m_h-statusH,(float)m_w,statusH, bar);
+    // Submit
+    m_renderer.render(m_draw, m_w, m_h);
+}
+
+void EditorShell::Shutdown()
+{
+    m_renderer.shutdown();
+}
+
+}
+
+
+
+
+
+
+
+
+
+
+

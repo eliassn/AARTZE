@@ -1,0 +1,32 @@
+.vs/
+*.VC.db
+*.VC.opendb
+*.slnx.sqlite
+.cursor/
+# CMake build stuff
+nafs-engine-release/
+NAFEngine/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+CMakeScripts/
+build/
+out/
+bin/
+obj/
+x64/
+Debug/
+Release/
+**/*.tlog
+**/*.lastbuildstate
+**/*.recipe
+**/*.obj
+**/*.exe
+# vcpkg build artifacts
+vcpkg_installed/
+vcpkg/
+installed/
+packages/
+buildtrees/
+# FetchContent/_deps
+_deps/

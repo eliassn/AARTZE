@@ -1,0 +1,32 @@
+NAF/
+├── assets/                   # Placeholder assets (models, textures, sounds, etc.)
+├── build/                   # Build scripts or output
+├── cmake/                   # CMake toolchain / modules (if needed)
+├── docs/                    # Documentation, architecture diagrams, etc.
+├── engine/                  # Core engine source files
+│   ├── components/          # ECS components
+│   ├── core/                # Entity, Component, System managers, registry
+│   ├── systems/             # All ECS systems (AI, Physics, Rendering, etc.)
+│   ├── behavior/            # Behavior trees, decision-making
+│   ├── events/              # Event bus, listeners
+│   ├── physics/             # Physics engine (collision, rigid body, etc.)
+│   ├── rendering/           # Rendering pipeline, shaders, draw calls
+│   ├── input/               # Keyboard, controller, gamepad input handling
+│   ├── audio/               # Sound engine
+│   ├── networking/          # Multiplayer or socket logic (optional later)
+│   └── utils/               # Math, random, helper classes
+├── game/                    # Game-specific logic (story, characters, missions)
+│   ├── entities/            # Player, NPC, Vehicle spawners
+│   ├── data/                # Dialogue trees, mission configs, spawn points
+│   ├── ai/                  # Game-specific AI setups
+│   ├── scripts/             # Lua or other scripting (if supported later)
+│   └── states/              # Game state manager (menu, pause, etc.)
+├── include/                 # Public headers if engine is built as a library
+├── lib/                     # External static libs or dynamic modules
+├── test/                    # Unit, integration, and regression tests
+├── thirdparty/              # External dependencies (GLM, stb, etc.)
+├── tools/                   # Internal tools (level editor, asset bundler)
+├── shaders/                 # GLSL/HLSL/Metal shaders
+├── CMakeLists.txt           # Or any build config (can support cross-platform)
+├── README.md
+└── LICENSE

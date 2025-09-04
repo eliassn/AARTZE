@@ -1,0 +1,15 @@
+{
+  "name": "aartze",
+  "version-string": "0.1.0",
+  "description": "AARTZE engine runtime/editor dependencies",
+  "dependencies": [
+    "assimp",
+    "glad",
+    "openal-soft",
+    "bullet3",
+    "lua",
+    "sol2",
+    "glm",
+    "stb"
+  ]
+}
