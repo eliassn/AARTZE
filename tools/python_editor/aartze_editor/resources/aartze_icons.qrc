@@ -1,0 +1,15 @@
+<RCC>
+  <qresource prefix="/icons">
+    <file>icons/camera.svg</file>
+    <file>icons/light.svg</file>
+    <file>icons/mesh.svg</file>
+    <file>icons/folder.svg</file>
+    <file>icons/world.svg</file>
+    <file>icons/play.svg</file>
+    <file>icons/pause.svg</file>
+    <file>icons/stop.svg</file>
+    <file>icons/move.svg</file>
+    <file>icons/rotate.svg</file>
+    <file>icons/scale.svg</file>
+  </qresource>
+</RCC>

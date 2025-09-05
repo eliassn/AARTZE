@@ -283,8 +283,10 @@ class EditorMode(QtWidgets.QWidget):
         sv.addStretch()
         # place shelf over viewport, left centered
         grid.addWidget(shelf, 0, 0, QtCore.Qt.AlignLeft | QtCore.Qt.AlignVCenter)
+        self.shelf = shelf
         split.addWidget(vpWrap)
         outliner = _outliner_panel(); split.addWidget(outliner)
+        self.outliner = outliner
         self.props = PropsPanel()
         split.addWidget(self.props)
         split.setStretchFactor(0,8); split.setStretchFactor(1,2); split.setStretchFactor(2,2)
@@ -540,6 +542,31 @@ def build_window() -> QtWidgets.QMainWindow:
             win.setStyleSheet(f.read())
     except Exception:
         pass
+
+    # ---------- global shortcuts ----------
+    def toggle_maximize():
+        ed = pages.get("editor")
+        if not ed:
+            return
+        # Hide/show outliner and props to maximize viewport
+        hidden = not ed.props.isVisible()
+        ed.props.setVisible(hidden)
+        try:
+            ed.outliner.setVisible(hidden)
+        except Exception:
+            pass
+
+    def toggle_props():
+        ed = pages.get("editor");
+        if ed: ed.props.setVisible(not ed.props.isVisible())
+
+    def toggle_tools():
+        ed = pages.get("editor");
+        if ed: ed.shelf.setVisible(not ed.shelf.isVisible())
+
+    QtGui.QShortcut(QtGui.QKeySequence("Ctrl+Space"), win, activated=toggle_maximize)
+    QtGui.QShortcut(QtGui.QKeySequence("N"), win, activated=toggle_props)
+    QtGui.QShortcut(QtGui.QKeySequence("T"), win, activated=toggle_tools)
 
     return win
 

@@ -32,6 +32,11 @@ class GLViewport(QtOpenGLWidgets.QOpenGLWidget):
         self._pos = [0.0, 0.0, 0.0]
         self._rot = [0.0, 0.0, 0.0]
         self._scl = [1.0, 1.0, 1.0]
+        # Transform op state
+        self._mode = None   # 'move'|'rotate'|'scale'|None
+        self._axis = 'x'
+        self._last_axis_key = None
+        self._axis_timer = QtCore.QElapsedTimer(); self._axis_timer.invalidate()
 
     def initializeGL(self):
         try:
@@ -199,6 +204,17 @@ class GLViewport(QtOpenGLWidgets.QOpenGLWidget):
     # Camera controls (Alt+mouse)
     def mousePressEvent(self, e):
         self._last = e.position()
+        if e.button() == QtCore.Qt.LeftButton and self._mode is not None:
+            try:
+                if eng:
+                    cx = float((e.position().x()/max(1,self.width()))*2.0-1.0)
+                    cy = float((1.0 - e.position().y()/max(1,self.height()))*2.0-1.0)
+                    mods = 1 if (e.modifiers() & QtCore.Qt.ShiftModifier) else 0
+                    eng.gizmo_begin(0.0,0.0,0.0, 0.0,0.0,-1.0, mods)
+                    eng.gizmo_set_mode(self._mode)
+                    eng.gizmo_set_axis(self._axis)
+            except Exception:
+                pass
 
     def mouseMoveEvent(self, e):
         if self._last is None:
@@ -222,24 +238,52 @@ class GLViewport(QtOpenGLWidgets.QOpenGLWidget):
         else:
             # Object move (G): drag on XZ plane
             if e.buttons() & QtCore.Qt.LeftButton:
-                d = e.position() - self._last
-                self._pos[0] += float(d.x())*0.01
-                self._pos[2] -= float(d.y())*0.01
-                # Propagate to engine if available
-                try:
-                    if eng and hasattr(eng, 'get_entity_id') and hasattr(eng, 'set_transform'):
+                if self._mode is not None and eng:
+                    try:
+                        ndcx = float((e.position().x()/max(1,self.width()))*2.0-1.0)
+                        ndcy = float((1.0 - e.position().y()/max(1,self.height()))*2.0-1.0)
+                        mods = 1 if (e.modifiers() & QtCore.Qt.ShiftModifier) else 0
+                        eng.gizmo_drag(ndcx, ndcy, mods, 0.0)
+                        # Pull updated transform
                         cid = int(eng.get_entity_id(self._sel_name))
-                        eng.set_transform(cid, float(self._pos[0]), float(self._pos[1]), float(self._pos[2]),
-                                          float(self._rot[0]), float(self._rot[1]), float(self._rot[2]))
+                        p, r = eng.get_transform(cid)
+                        self._pos[:] = list(p); self._rot[:] = list(r)
+                        self.transformChanged.emit(tuple(self._pos), tuple(self._rot), tuple(self._scl))
+                    except Exception:
+                        pass
+                    self.update()
+                else:
+                    d = e.position() - self._last
+                    self._pos[0] += float(d.x())*0.01
+                    self._pos[2] -= float(d.y())*0.01
+                    try:
+                        if eng and hasattr(eng, 'get_entity_id') and hasattr(eng, 'set_transform'):
+                            cid = int(eng.get_entity_id(self._sel_name))
+                            eng.set_transform(cid, float(self._pos[0]), float(self._pos[1]), float(self._pos[2]),
+                                              float(self._rot[0]), float(self._rot[1]), float(self._rot[2]))
+                    except Exception:
+                        pass
+                    self.transformChanged.emit(tuple(self._pos), tuple(self._rot), tuple(self._scl))
+                    self.update()
+            else:
+                # Hover pre-highlight
+                try:
+                    if eng and hasattr(eng, 'gizmo_hover'):
+                        ndcx = float((e.position().x()/max(1,self.width()))*2.0-1.0)
+                        ndcy = float((1.0 - e.position().y()/max(1,self.height()))*2.0-1.0)
+                        eng.gizmo_hover(ndcx, ndcy)
+                        self.update()
                 except Exception:
                     pass
-                # Notify UI
-                self.transformChanged.emit(tuple(self._pos), tuple(self._rot), tuple(self._scl))
-                self.update()
         self._last = e.position()
 
     def mouseReleaseEvent(self, e):
         self._last = None
+        if e.button() == QtCore.Qt.LeftButton and eng:
+            try:
+                eng.gizmo_end()
+            except Exception:
+                pass
 
     def wheelEvent(self, e):
         if eng:
@@ -251,6 +295,50 @@ class GLViewport(QtOpenGLWidgets.QOpenGLWidget):
             self.cam.dist *= 0.9 if e.angleDelta().y() > 0 else 1.1
             self.cam.dist = max(1.0, min(50.0, self.cam.dist))
         self.update()
+
+    # --- Key handling ---
+    def keyPressEvent(self, e: QtGui.QKeyEvent):
+        k = e.key()
+        if k in (QtCore.Qt.Key_G, QtCore.Qt.Key_R, QtCore.Qt.Key_S):
+            self._mode = 'move' if k==QtCore.Qt.Key_G else ('rotate' if k==QtCore.Qt.Key_R else 'scale')
+            e.accept(); return
+        if k in (QtCore.Qt.Key_X, QtCore.Qt.Key_Y, QtCore.Qt.Key_Z):
+            axis = 'x' if k==QtCore.Qt.Key_X else ('y' if k==QtCore.Qt.Key_Y else 'z')
+            # Double-press detection for screen-space axis lock
+            double = (self._last_axis_key == axis) and self._axis_timer.isValid() and (self._axis_timer.elapsed() < 350)
+            self._last_axis_key = axis
+            self._axis_timer.restart()
+            self._axis = axis
+            try:
+                if eng:
+                    eng.gizmo_set_axis(self._axis)
+                    eng.gizmo_set_screen_axis(bool(double))
+            except Exception:
+                pass
+            e.accept(); return
+        if k in (QtCore.Qt.Key_Escape, QtCore.Qt.Key_Return, QtCore.Qt.Key_Enter):
+            # Finish/cancel transform
+            self._mode = None
+            try:
+                if eng:
+                    eng.gizmo_end()
+            except Exception:
+                pass
+            e.accept(); return
+        super().keyPressEvent(e)
+
+    def mousePressEvent(self, e):
+        # RMB cancel during transform
+        if e.button() == QtCore.Qt.RightButton and self._mode is not None:
+            try:
+                if eng and hasattr(eng, 'gizmo_cancel'):
+                    eng.gizmo_cancel()
+            except Exception:
+                pass
+            self._mode = None
+            self.update()
+            return
+        super().mousePressEvent(e)
 
     # --- External control from Properties panel ---
     @QtCore.Slot(float, float, float)
@@ -273,6 +361,8 @@ class GLViewport(QtOpenGLWidgets.QOpenGLWidget):
         try:
             if eng and hasattr(eng, 'get_entity_id') and hasattr(eng, 'get_transform'):
                 cid = int(eng.get_entity_id(self._sel_name))
+                if hasattr(eng, 'select'):
+                    eng.select(cid)
                 if cid >= 0:
                     p, r = eng.get_transform(cid)
                     self._pos[:] = list(p); self._rot[:] = list(r)

@@ -1,6 +1,7 @@
 #pragma once
 #include <array>
 #include <tuple>
+#include <pybind11/pytypes.h>
 namespace aartze::scripting {
 struct EngineAPI {
   static void init();
@@ -23,5 +24,20 @@ struct EngineAPI {
   static void camera_orbit_delta(float dyaw_deg, float dpitch_deg);
   static void camera_pan_delta(float dx, float dy);
   static void camera_dolly_factor(float factor);
+
+  // Scene CRUD
+  static int  scene_create_entity(const char* name);
+  static pybind11::list scene_entities();
+  static void scene_select(int id);
+
+  // Gizmo hooks (stub implementation)
+  static void gizmo_begin(float rox, float roy, float roz, float rdx, float rdy, float rdz, int modifiers);
+  static void gizmo_drag(float ndc_x, float ndc_y, int modifiers, float dt_seconds);
+  static void gizmo_end();
+  static void gizmo_set_mode(const char* mode);   // "move" | "rotate" | "scale"
+  static void gizmo_set_axis(char axis);          // 'x' | 'y' | 'z'
+  static char gizmo_hover(float ndc_x, float ndc_y); // returns hovered axis or 0
+  static void gizmo_cancel();                     // cancel and restore start transform
+  static void gizmo_set_screen_axis(bool enabled); // double-press axis: screen-space lock
 };
 }
