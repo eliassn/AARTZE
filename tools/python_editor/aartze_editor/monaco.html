@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' 'unsafe-eval' data: blob:;" />
+    <style>
+      html, body, #container { height:100%; margin:0; background:#1e1e1e; }
+    </style>
+  </head>
+  <body>
+    <div id="container"></div>
+    <script>
+      (function(){
+        const BASES = [
+          '__MONACO_BASE__'.replace(/\/$/, ''),
+          'https://cdn.jsdelivr.net/npm/monaco-editor@0.51.0/min',
+          'https://unpkg.com/monaco-editor@0.51.0/min'
+        ];
+        function loadScript(src){ return new Promise((res,rej)=>{ const s=document.createElement('script'); s.src=src; s.onload=res; s.onerror=rej; document.body.appendChild(s); }); }
+        function loadCSS(href){ return new Promise((res,rej)=>{ const l=document.createElement('link'); l.rel='stylesheet'; l.href=href; l.onload=res; l.onerror=rej; document.head.appendChild(l); }); }
+        async function boot(base){
+          if(!window.require){ await loadScript(base+'/vs/loader.js'); }
+          await loadCSS(base+'/vs/editor/editor.main.css');
+          window.MonacoEnvironment={ getWorkerUrl: ()=>URL.createObjectURL(new Blob([`self.MonacoEnvironment={baseUrl:'${base}/vs/'};importScripts('${base}/vs/base/worker/workerMain.js');`],{type:'text/javascript'})) };
+          window.require.config({ paths: { vs: base+'/vs' } });
+          return new Promise((resolve)=>{
+            window.require(['vs/editor/editor.main'], ()=>{
+              const ed = window.monaco.editor.create(document.getElementById('container'),{
+                value: `__INITIAL_CODE__`, language:'cpp', theme:'vs-dark', automaticLayout:true, minimap:{enabled:false}
+              });
+              resolve(true);
+            });
+          });
+        }
+        (async ()=>{ for(const b of BASES){ try{ if(await boot(b)) return; }catch(e){} } document.getElementById('container').textContent='Monaco failed to load'; })();
+      })();
+    </script>
+  </body>
+  </html>

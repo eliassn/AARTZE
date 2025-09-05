@@ -2,6 +2,14 @@
 #include "imgui.h"
 #include <string>
 #include <array>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+#include "imgui_internal.h"
+#include "ImGuizmo.h"
+#include "imnodes.h"
+#include "../runtime/Scene.h"
+#include "../runtime/Importer.h"
 #include "imgui_internal.h" // for ImRect and internal helpers
 
 #ifdef USE_TEXTEDITOR
@@ -31,12 +39,26 @@ struct EditorStyle {
 class EditorUI {
 public:
     EditorUI();
+    void SetRenderer(class Renderer* r) { renderer = r; }
 
     // Call once if you want the “AARTZE dark” theme automatically:
     static void ApplyTheme(ImGuiStyle* style = nullptr);
 
     // Call every frame inside an active ImGui frame.
     void Draw();
+
+    // Docking + windowed layout
+    void DrawDockspace();
+    void BuildDockspace();
+    void DrawViewportWindow();
+    void DrawOutlinerWindow();
+    void DrawDetailsWindow();
+    void DrawTimelineWindow();
+    void DrawStatusWindow();
+
+    struct InputState { float dx=0, dy=0; bool lmb=false; bool rmb=false; bool mmb=false; bool alt=false; bool ctrl=false; bool shift=false; };
+    void EditorInputRouter(const InputState& in);
+    bool IsUIMode() const { return uiMode; }
 
     // Accessors if you want to hook buttons later:
     ViewMode GetViewMode() const { return viewMode; }
@@ -67,6 +89,8 @@ private:
     void DrawNodeGrid(const ImRect& r, float step=24.f, ImU32 color=IM_COL32(255,255,255,25));
     void Spinner(float radius, float thickness, ImU32 col, float speed=2.0f);
     bool TabButton(const char* label, bool active); // pill-like tabs (wrap friendly)
+    void ComposeTRS(float outM[16]);
+    void UpdateTRSFromMatrix(const float m[16]);
 
 private:
     // State
@@ -102,6 +126,24 @@ private:
 
     // Style
     EditorStyle style;
+
+    // Renderer hook
+    class Renderer* renderer = nullptr;
+    // Cube transform
+    glm::vec3 camEye{4,3,6};
+    glm::vec3 camAt{0,0,0};
+    glm::vec3 camUp{0,1,0};
+
+    // M3: Scene / Import
+    Scene      _scene;
+    int        _importCounter = 0;
+
+    // Docking + gizmo state
+    ImRect     viewportRect{}; // for hit-tests and ImGuizmo
+    enum class GizmoMode { Translate, Rotate, Scale };
+    GizmoMode  gizmoMode = GizmoMode::Translate;
+    bool       gizmoLocal = false;
+    bool       uiMode = false;
 };
 
 } // namespace aartze

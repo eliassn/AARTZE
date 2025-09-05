@@ -1,0 +1,50 @@
+/* Dark + amber theme close to your JSX mock */
+* { font-family: Inter, "Segoe UI", Roboto, "Helvetica Neue", Arial; font-size: 12px; color: #e5e7eb; }
+QMainWindow, QWidget { background: #0f0f12; }
+
+/* Top brand bar */
+#TopMenu { background: rgba(16,16,18,0.85); border-bottom: 1px solid #2a2b30; }
+#Brand { color: #f59e0b; font-weight: 700; letter-spacing: 0.16em; }
+#BrandDot { background: qlineargradient(x1:0,y1:0,x2:1,y2:1, stop:0 #fbbf24, stop:1 #d97706); border-radius: 8px; }
+#GreenDot { background: #10b981; border-radius: 4px; }
+#MenuItem { color: #cbd5e1; }
+#MenuItem:hover { color: white; }
+
+/* Header toolbar */
+#HeaderBar { background: #111215; border-bottom: 1px solid #2a2b30; padding: 4px; }
+QToolBar QToolButton { color:#e5e7eb; border: none; padding: 6px 8px; }
+QToolBar QToolButton:hover { background: #1c1d22; border-radius: 8px; }
+#Pill { border: 1px solid #2a2b30; border-radius: 8px; padding: 4px 8px; background: #141519; }
+#Pill:hover { background: #191b21; }
+#FlatBtn { border: 0; padding: 4px 8px; color:#cbd5e1; }
+#FlatBtn:hover { background:#1b1c21; border-radius:8px; }
+
+/* Split & panels */
+#MainSplit::handle { background: #111215; }
+#ViewportWrap { background: #0f0f12; border: 1px solid #2a2b30; border-radius: 16px; }
+#LeftPanel, #RightPanel { background: #0f0f12; border: 1px solid #2a2b30; border-radius: 16px; }
+#PanelTitle { color: #cbd5e1; font-weight: 600; letter-spacing: .04em; }
+
+/* Pills for import tabs */
+#PillTab { border: 1px solid #3a2f16; border-radius: 8px; padding: 4px 8px; background: #141519; color: #e2e8f0; }
+#PillTab:checked { border-color: #f59e0b; background: #1e1a12; color: #f8cf81; }
+
+/* Group boxes */
+#PanelGroup { border: 1px solid #2a2b30; border-radius: 10px; margin-top: 8px; }
+#PanelGroup::title { subcontrol-origin: margin; left: 8px; padding: 0 4px; color: #9aa3b2; }
+
+/* Controls */
+#AxisCap { color:#cbd5e1; background:#17181d; border:1px solid #2a2b30; border-radius:6px; padding:2px 0; text-align:center; }
+QLineEdit, QSpinBox, QDoubleSpinBox { background:#121318; border:1px solid #2a2b30; border-radius:8px; padding:6px 6px; color:#e5e7eb; }
+QLineEdit:focus, QSpinBox:focus, QDoubleSpinBox:focus { border-color:#f59e0b; }
+#MiniPill { border:1px solid #2a2b30; border-radius:6px; padding:2px 6px; background:#101115; color:#cbd5e1; }
+
+/* Tree */
+#Tree { border:1px solid #2a2b30; border-radius:10px; background:#0f0f12; }
+
+/* Timeline */
+#Timeline { background: rgba(16,16,18,0.85); border-top: 1px solid #2a2b30; }
+
+/* Status bar */
+#StatusBar { background: rgba(16,16,18,0.85); color:#cbd5e1; }
+

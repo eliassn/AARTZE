@@ -20,6 +20,7 @@
         "VCPKG_MANIFEST_MODE": "ON",
         "VCPKG_TARGET_TRIPLET": "x64-windows",
         "BUILD_AARTZE_IMGUI_EDITOR": "ON",
+        "BUILD_AARTZE_PYTHON": "ON",
         "IMGUI_DIR": "${sourceDir}/thirdparty/imgui",
         "USE_UI2": "OFF"
       }

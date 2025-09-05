@@ -1,15 +1,21 @@
-{
+﻿{
   "name": "aartze",
-  "version-string": "0.1.0",
-  "description": "AARTZE engine runtime/editor dependencies",
+  "version": "0.1.0",
+  
   "dependencies": [
-    "assimp",
-    "glad",
-    "openal-soft",
-    "bullet3",
-    "lua",
-    "sol2",
     "glm",
-    "stb"
+    "entt",
+    "nlohmann-json",
+    "assimp",
+    "bullet3",
+    
+    "pybind11",
+    "glfw3",
+    "glad",
+    "stb",
+    { "name": "openal-soft", "default-features": true, "platform": "!linux & !osx" },
+    { "name": "vulkan-headers", "platform": "windows | linux | osx" }
   ]
 }
+
+

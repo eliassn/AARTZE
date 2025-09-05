@@ -1,0 +1,8 @@
+add_library(aartze_render STATIC rhi/GLRHI.cpp Renderer.cpp)
+target_include_directories(aartze_render PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/../..)
+target_compile_features(aartze_render PUBLIC cxx_std_17)
+target_link_libraries(aartze_render PUBLIC aartze_core glm::glm glad::glad glfw)
+if (AARTZE_WITH_VULKAN AND TARGET Vulkan::Headers)
+  target_link_libraries(aartze_render PUBLIC Vulkan::Headers)
+endif()
+

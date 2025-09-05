@@ -4,6 +4,10 @@
 #include <cstdio>
 #include "imgui_internal.h"
 #include "../../thirdparty/imgui/misc/cpp/imgui_stdlib.h"
+#include "Renderer.h"
+#include "ImGuizmo.h"
+#include "imnodes.h"
+#include <glm/gtx/euler_angles.hpp>
 
 #ifdef _WIN32
 #  include <windows.h>
@@ -71,30 +75,42 @@ void EditorUI::ApplyTheme(ImGuiStyle* st) {
     ImGuiStyle& style = st ? *st : ImGui::GetStyle();
     ImVec4* colors = style.Colors;
 
-    colors[ImGuiCol_WindowBg]        = ImVec4(0.07f,0.07f,0.08f,1.00f);
-    colors[ImGuiCol_ChildBg]         = ImVec4(0.08f,0.08f,0.09f,0.70f);
+    // Dark neutral + amber accents to match screenshots
+    colors[ImGuiCol_WindowBg]        = ImVec4(0.08f,0.08f,0.09f,1.00f);
+    colors[ImGuiCol_ChildBg]         = ImVec4(0.09f,0.09f,0.10f,0.85f);
     colors[ImGuiCol_PopupBg]         = ImVec4(0.10f,0.10f,0.11f,0.98f);
-    colors[ImGuiCol_Border]          = ImVec4(0.18f,0.18f,0.20f,1.00f);
-    colors[ImGuiCol_FrameBg]         = ImVec4(0.13f,0.13f,0.15f,1.00f);
-    colors[ImGuiCol_FrameBgHovered]  = ImVec4(0.18f,0.18f,0.22f,1.00f);
-    colors[ImGuiCol_FrameBgActive]   = ImVec4(0.22f,0.20f,0.12f,1.00f); // amber tint
-    colors[ImGuiCol_Button]          = ImVec4(0.13f,0.13f,0.15f,1.00f);
+    colors[ImGuiCol_Border]          = ImVec4(0.16f,0.16f,0.18f,1.00f);
+    colors[ImGuiCol_FrameBg]         = ImVec4(0.12f,0.12f,0.13f,1.00f);
+    colors[ImGuiCol_FrameBgHovered]  = ImVec4(0.18f,0.18f,0.20f,1.00f);
+    colors[ImGuiCol_FrameBgActive]   = ImVec4(0.26f,0.22f,0.12f,1.00f);
+    colors[ImGuiCol_Button]          = ImVec4(0.14f,0.14f,0.16f,1.00f);
     colors[ImGuiCol_ButtonHovered]   = ImVec4(0.20f,0.20f,0.22f,1.00f);
-    colors[ImGuiCol_ButtonActive]    = ImVec4(0.35f,0.28f,0.10f,1.00f);
-    colors[ImGuiCol_Header]          = ImVec4(0.18f,0.18f,0.22f,1.00f);
-    colors[ImGuiCol_HeaderHovered]   = ImVec4(0.24f,0.24f,0.28f,1.00f);
-    colors[ImGuiCol_HeaderActive]    = ImVec4(0.30f,0.26f,0.12f,1.00f);
-    colors[ImGuiCol_Tab]             = ImVec4(0.14f,0.14f,0.16f,1.00f);
+    colors[ImGuiCol_ButtonActive]    = ImVec4(0.30f,0.26f,0.12f,1.00f);
+    colors[ImGuiCol_Header]          = ImVec4(0.16f,0.16f,0.18f,1.00f);
+    colors[ImGuiCol_HeaderHovered]   = ImVec4(0.22f,0.22f,0.24f,1.00f);
+    colors[ImGuiCol_HeaderActive]    = ImVec4(0.26f,0.24f,0.12f,1.00f);
+    colors[ImGuiCol_Tab]             = ImVec4(0.12f,0.12f,0.14f,1.00f);
     colors[ImGuiCol_TabHovered]      = ImVec4(0.22f,0.22f,0.24f,1.00f);
-    colors[ImGuiCol_TabActive]       = ImVec4(0.26f,0.24f,0.12f,1.00f);
-    colors[ImGuiCol_Separator]       = ImVec4(0.18f,0.18f,0.20f,1.00f);
+    colors[ImGuiCol_TabActive]       = ImVec4(0.24f,0.22f,0.12f,1.00f);
+    colors[ImGuiCol_Separator]       = ImVec4(0.16f,0.16f,0.18f,1.00f);
 
-    style.FrameRounding = 6.f;
-    style.GrabRounding  = 6.f;
-    style.TabRounding   = 6.f;
-    style.WindowRounding= 12.f;
-    style.ChildRounding = 12.f;
-    style.ScrollbarSize = 14.f;
+    style.WindowPadding = ImVec2(10,10);
+    style.FramePadding  = ImVec2(10,6);
+    style.ItemSpacing   = ImVec2(8,6);
+    style.FrameRounding = 8.f;
+    style.GrabRounding  = 8.f;
+    style.TabRounding   = 8.f;
+    style.WindowRounding  = 12.f;
+    style.ChildRounding   = 12.f;
+    style.ScrollbarSize   = 14.f;
+    style.WindowBorderSize= 1.f;
+    style.FrameBorderSize = 1.f;
+
+    // Docking visuals (only when docking branch is available)
+#ifdef IMGUI_HAS_DOCK
+    colors[ImGuiCol_DockingEmptyBg] = ImVec4(0.07f,0.07f,0.08f,1.0f);
+    colors[ImGuiCol_DockingPreview] = ImVec4(0.98f,0.69f,0.22f,0.35f);
+#endif
 }
 
 void EditorUI::StartSplash() {
@@ -106,35 +122,172 @@ void EditorUI::StartSplash() {
 }
 
 void EditorUI::Draw() {
-    // Always show a small top-left overlay so we can confirm rendering
-    ImGui::SetNextWindowPos(ImVec2(12,12), ImGuiCond_Always);
-    ImGui::SetNextWindowBgAlpha(0.35f);
-    if (ImGui::Begin("##AARTZE_Overlay", nullptr,
-        ImGuiWindowFlags_NoDecoration|ImGuiWindowFlags_NoInputs|
-        ImGuiWindowFlags_AlwaysAutoResize|ImGuiWindowFlags_NoNav))
-    {
-        ImGui::TextColored(ImVec4(0.98f,0.69f,0.22f,1.f), "AARTZE Editor ACTIVE");
-    }
-    ImGui::End();
-
     if (booting) { DrawSplash(); return; }
 
+    // Docked layout: top bars + windows owned by dockspace
+    BuildDockspace();
     DrawTopBar();
-
-    // Second row with workspace + mode dropdowns lives in the same top bar in web; here keep it compact:
-    // (We draw header/tool rows + main layout + timeline)
     DrawHeaderTools();
-
     if (viewMode == ViewMode::Editor) {
-        DrawMain3Col();
-        DrawTimeline();
+        DrawViewportWindow();
+        DrawOutlinerWindow();
+        DrawDetailsWindow();
+        DrawTimelineWindow();
     } else if (viewMode == ViewMode::Auto) {
         DrawAutoMode();
     } else {
         DrawCodeMode();
     }
+    DrawStatusWindow();
+}
 
-    DrawStatusBar();
+void EditorUI::DrawDockspace()
+{
+#ifdef IMGUI_HAS_DOCK
+    ImGuiWindowFlags flags = ImGuiWindowFlags_NoDocking | ImGuiWindowFlags_NoTitleBar |
+                             ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize |
+                             ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoBringToFrontOnFocus |
+                             ImGuiWindowFlags_NoNavFocus | ImGuiWindowFlags_MenuBar;
+    const ImGuiViewport* vp = ImGui::GetMainViewport();
+    ImGui::SetNextWindowPos(vp->WorkPos);
+    ImGui::SetNextWindowSize(vp->WorkSize);
+    ImGui::SetNextWindowViewport(vp->ID);
+    ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 0);
+    ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, {0,0});
+    ImGui::Begin("AARTZE Dockspace", nullptr, flags);
+    ImGui::PopStyleVar(2);
+    ImGuiID dockspace_id = ImGui::GetID("AARTZE_DOCKSPACE");
+    ImGui::DockSpace(dockspace_id, {0,0});
+
+    static bool built = false;
+    if (!built) {
+        built = true;
+        ImGui::DockBuilderRemoveNode(dockspace_id);
+        ImGui::DockBuilderAddNode(dockspace_id, ImGuiDockNodeFlags_DockSpace);
+        ImGuiID dock_main = dockspace_id;
+        ImGuiID dock_bottom;
+        ImGuiID dock_left  = ImGui::DockBuilderSplitNode(dock_main, ImGuiDir_Left, 0.66f, nullptr, &dock_bottom);
+        ImGuiID dock_right = ImGui::DockBuilderSplitNode(dock_main, ImGuiDir_Right, 0.34f, nullptr, &dock_bottom);
+        ImGuiID dock_right_bottom = ImGui::DockBuilderSplitNode(dock_right, ImGuiDir_Down, 0.55f, nullptr, &dock_right);
+        // assign
+        ImGui::DockBuilderDockWindow("Viewport", dock_left);
+        ImGui::DockBuilderDockWindow("Outliner", dock_right);
+        ImGui::DockBuilderDockWindow("Details",  dock_right_bottom);
+        ImGui::DockBuilderDockWindow("Timeline", dock_bottom);
+        ImGui::DockBuilderDockWindow("Status",   dock_bottom);
+        ImGui::DockBuilderFinish(dock_main);
+    }
+    ImGui::End();
+#endif
+}
+
+void EditorUI::BuildDockspace()
+{
+#ifdef IMGUI_HAS_DOCK
+    ImGuiIO& io = ImGui::GetIO(); (void)io;
+    const ImGuiViewport* vp = ImGui::GetMainViewport();
+
+    ImGuiWindowFlags host_flags = ImGuiWindowFlags_NoDocking | ImGuiWindowFlags_NoTitleBar |
+                                  ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize |
+                                  ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoBringToFrontOnFocus |
+                                  ImGuiWindowFlags_NoNavFocus | ImGuiWindowFlags_NoBackground;
+    ImGui::SetNextWindowPos(vp->Pos);
+    ImGui::SetNextWindowSize(vp->Size);
+    ImGui::SetNextWindowViewport(vp->ID);
+    ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 0.f);
+    ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0.f);
+    ImGui::Begin("##AARTZE_DockHost", nullptr, host_flags);
+    ImGui::PopStyleVar(2);
+
+    ImGuiDockNodeFlags dock_flags = ImGuiDockNodeFlags_PassthruCentralNode |
+                                    ImGuiDockNodeFlags_NoDockingInCentralNode |
+                                    ImGuiDockNodeFlags_NoTabBar |
+                                    ImGuiDockNodeFlags_NoSplit;
+    ImGuiID dockspace_id = ImGui::GetID("AARTZE/DockSpace");
+    ImGui::DockSpace(dockspace_id, ImVec2(0,0), dock_flags);
+
+    static bool built = false;
+    if (!built) {
+        built = true;
+        ImGui::DockBuilderRemoveNode(dockspace_id);
+        ImGui::DockBuilderAddNode(dockspace_id, ImGuiDockNodeFlags_DockSpace | ImGuiDockNodeFlags_PassthruCentralNode);
+        ImGui::DockBuilderSetNodeSize(dockspace_id, vp->Size);
+
+        ImGuiID dock_main = dockspace_id;               // center -> Viewport
+        ImGuiID dock_right = ImGui::DockBuilderSplitNode(dock_main, ImGuiDir_Right, 0.26f, nullptr, &dock_main);
+        ImGuiID dock_right2= ImGui::DockBuilderSplitNode(dock_right, ImGuiDir_Right, 0.36f, nullptr, &dock_right);
+        ImGuiID dock_bottom= ImGui::DockBuilderSplitNode(dock_main, ImGuiDir_Down, 0.22f, nullptr, &dock_main);
+
+        ImGui::DockBuilderDockWindow("Viewport", dock_main);
+        ImGui::DockBuilderDockWindow("Outliner", dock_right);
+        ImGui::DockBuilderDockWindow("Details",  dock_right2);
+        ImGui::DockBuilderDockWindow("Timeline", dock_bottom);
+
+        ImGui::DockBuilderFinish(dockspace_id);
+    }
+    ImGui::End();
+#endif
+}
+
+void EditorUI::DrawViewportWindow()
+{
+    // Hide tab bar for the Viewport
+#ifdef IMGUI_HAS_DOCK
+    static ImGuiWindowClass sViewportNoTab;
+    sViewportNoTab.ClassId = ImGui::GetID("ViewportClass");
+    sViewportNoTab.DockNodeFlagsOverrideSet = ImGuiDockNodeFlags_NoTabBar;
+    ImGui::SetNextWindowClass(&sViewportNoTab);
+#endif
+    ImGui::Begin("Viewport", nullptr, ImGuiWindowFlags_NoScrollbar|ImGuiWindowFlags_NoScrollWithMouse);
+    ImVec2 avail = ImGui::GetContentRegionAvail();
+    if (renderer) renderer->ResizeViewport((int)avail.x, (int)avail.y);
+    GLuint tex = renderer ? renderer->GetViewportTexture() : 0;
+    if (tex != 0) {
+        ImGui::Image((ImTextureID)(intptr_t)tex, avail, ImVec2(0,1), ImVec2(1,0));
+        viewportRect = ImRect(ImGui::GetItemRectMin(), ImGui::GetItemRectMax());
+    } else {
+        // Fallback: draw our procedural background like before
+        ImDrawList* dl = ImGui::GetWindowDrawList();
+        ImVec2 p0 = ImGui::GetCursorScreenPos();
+        ImRect r(p0, p0+avail);
+        dl->AddRectFilled(r.Min, r.Max, IM_COL32(24,25,29,255));
+        viewportRect = r;
+    }
+
+    // ImGuizmo over the viewport
+    if (renderer) {
+        ImGuizmo::BeginFrame();
+        ImGuizmo::SetDrawlist();
+        ImGuizmo::SetRect(viewportRect.Min.x, viewportRect.Min.y, viewportRect.GetWidth(), viewportRect.GetHeight());
+        float view[16], proj[16], model[16];
+        renderer->getViewMatrix(view); renderer->getProjMatrix(proj); ComposeTRS(model);
+        ImGuizmo::OPERATION op = (gizmoMode==GizmoMode::Translate? ImGuizmo::TRANSLATE : gizmoMode==GizmoMode::Rotate? ImGuizmo::ROTATE : ImGuizmo::SCALE);
+        ImGuizmo::MODE mode = gizmoLocal ? ImGuizmo::LOCAL : ImGuizmo::WORLD;
+        if (ImGuizmo::Manipulate(view, proj, op, mode, model)) { UpdateTRSFromMatrix(model); }
+    }
+    ImGui::End();
+}
+
+static ImGuiWindowFlags panel_flags = ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoMove;
+void EditorUI::DrawOutlinerWindow(){ ImGui::Begin("Outliner", nullptr, panel_flags); DrawOutliner(ImGui::GetContentRegionAvail()); ImGui::End(); }
+void EditorUI::DrawDetailsWindow(){ ImGui::Begin("Details",  nullptr, panel_flags); DrawDetails (ImGui::GetContentRegionAvail()); ImGui::End(); }
+void EditorUI::DrawTimelineWindow(){ ImGui::Begin("Timeline", nullptr, panel_flags); DrawTimeline(); ImGui::End(); }
+void EditorUI::DrawStatusWindow(){ ImGui::Begin("Status",   nullptr, panel_flags); DrawStatusBar(); ImGui::End(); }
+
+void EditorUI::EditorInputRouter(const InputState& /*in*/)
+{
+    ImGuiIO& io = ImGui::GetIO();
+    bool over_ui = io.WantCaptureMouse || io.WantCaptureKeyboard;
+    bool over_viewport = false;
+    // If the Viewport window is focused/hovered and the mouse is inside the recorded rect
+    if (ImGui::IsWindowHovered(ImGuiHoveredFlags_AnyWindow)) {
+        ImVec2 mp = io.MousePos;
+        over_viewport = viewportRect.Contains(mp);
+    }
+    bool using_gizmo = ImGuizmo::IsUsing();
+    int dummy = 0; (void)dummy;
+    bool using_nodes = ImNodes::IsEditorHovered() || ImNodes::IsLinkCreated(nullptr,nullptr) || ImNodes::IsNodeHovered(&dummy);
+    uiMode = over_ui || !over_viewport || using_gizmo || using_nodes;
 }
 
 /* ================= SPLASH ================= */
@@ -223,10 +376,13 @@ void EditorUI::DrawSplash() {
 
 void EditorUI::DrawTopBar() {
     ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 0);
+    ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(8,6));
+    ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(12,6));
     ImGui::Begin("##TopBar", nullptr, ImGuiWindowFlags_NoDecoration|ImGuiWindowFlags_NoMove|ImGuiWindowFlags_NoSavedSettings);
     ImGui::PushStyleColor(ImGuiCol_ChildBg, ImVec4(0.10f,0.10f,0.11f,0.95f));
-    ImGui::BeginChild("TopMenubar", ImVec2(0, 36), true);
+    ImGui::BeginChild("TopMenubar", ImVec2(0, 38), true);
 
+    ImGui::SetCursorPosY(ImGui::GetCursorPosY()+2);
     ImGui::TextColored(ImVec4(0.98f,0.69f,0.22f,1), "AARTZE"); ImGui::SameLine();
 
     const char* menus[] = {"File","Edit","Window","Tools","Build","Select","Actor","Help"};
@@ -238,13 +394,13 @@ void EditorUI::DrawTopBar() {
     ImGui::EndChild();
     ImGui::PopStyleColor();
     ImGui::End();
-    ImGui::PopStyleVar();
+    ImGui::PopStyleVar(3);
 }
 
 bool EditorUI::TabButton(const char* label, bool active) {
-    ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 6.f);
-    ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(10,5));
-    ImGui::PushStyleColor(ImGuiCol_Button, active ? ImVec4(0.20f,0.18f,0.10f,1) : ImVec4(0.12f,0.12f,0.13f,1));
+    ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 8.f);
+    ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(10,6));
+    ImGui::PushStyleColor(ImGuiCol_Button, active ? ImVec4(0.22f,0.20f,0.10f,1) : ImVec4(0.13f,0.13f,0.14f,1));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, ImVec4(0.18f,0.18f,0.22f,1));
     ImGui::PushStyleColor(ImGuiCol_ButtonActive, ImVec4(0.26f,0.24f,0.12f,1));
     bool clicked = ImGui::Button(label);
@@ -255,9 +411,11 @@ bool EditorUI::TabButton(const char* label, bool active) {
 
 void EditorUI::DrawHeaderTools() {
     ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 0);
+    ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(8,6));
+    ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(8,6));
     ImGui::Begin("##HeaderTools", nullptr, ImGuiWindowFlags_NoDecoration|ImGuiWindowFlags_NoSavedSettings);
     ImGui::PushStyleColor(ImGuiCol_ChildBg, ImVec4(0.10f,0.10f,0.11f,1));
-    ImGui::BeginChild("Hdr", ImVec2(0, 40), true);
+    ImGui::BeginChild("Hdr", ImVec2(0, 44), true);
 
     // Play controls
     if (ImGui::Button("▶")) {}
@@ -310,7 +468,7 @@ void EditorUI::DrawHeaderTools() {
     ImGui::EndChild();
     ImGui::PopStyleColor();
     ImGui::End();
-    ImGui::PopStyleVar();
+    ImGui::PopStyleVar(3);
 }
 
 /* ============== MAIN 3-COLUMN LAYOUT (Editor mode) ============== */
@@ -355,19 +513,19 @@ void EditorUI::DrawViewport(ImVec2 size) {
     // Subtle gradient fill
     dl->AddRectFilled(r.Min, r.Max, IM_COL32(25,26,30,255));
     // inner rounded rect
-    ImRect inner(r.Min+ImVec2(18,18), r.Max-ImVec2(18,18));
-    dl->AddRectFilled(inner.Min, inner.Max, IM_COL32(40,41,48,150), 24.f);
+    ImRect inner(r.Min+ImVec2(16,16), r.Max-ImVec2(16,16));
+    dl->AddRectFilled(inner.Min, inner.Max, IM_COL32(40,41,48,140), 22.f);
 
     // Left tool shelf (buttons)
     ImGui::SetCursorScreenPos(inner.Min + ImVec2(6, inner.GetHeight()*0.5f - 140));
-    ImGui::BeginChild("##tools", ImVec2(40, 280), true);
+    ImGui::BeginChild("##tools", ImVec2(44, 300), true);
     const char* tools[] = {"Sel","Cur","Move","Rot","Scale","Paint","Measure","Add","Cam","Light","Coll"};
-    for (auto& t: tools) { if (ImGui::Button(t, ImVec2(28,24))) {} }
+    for (auto& t: tools) { if (ImGui::Button(t, ImVec2(30,26))) {} }
     ImGui::EndChild();
 
     // Axis gizmo + spinner (top-right)
     ImGui::SetCursorScreenPos(inner.Max - ImVec2(120, 64));
-    ImGui::BeginChild("##gizmo", ImVec2(110, 52), true);
+    ImGui::BeginChild("##gizmo", ImVec2(120, 56), true);
     ImGui::TextColored(ImVec4(1,0.3f,0.3f,1), "X");
     ImGui::TextColored(ImVec4(0.3f,1,0.5f,1), "Y");
     ImGui::TextColored(ImVec4(0.4f,0.6f,1,1), "Z");
@@ -378,6 +536,40 @@ void EditorUI::DrawViewport(ImVec2 size) {
     ImGui::TextDisabled("Loading");
     ImGui::EndGroup();
     ImGui::EndChild();
+
+    // 3D render into inner rect using our minimal Renderer
+    if (renderer) {
+        // set viewport to the inner rect
+        ImVec2 topLeft = inner.Min;
+        ImVec2 bottomRight = inner.Max;
+        ImVec2 winPos = ImGui::GetWindowPos();
+        ImVec2 vpTL = topLeft;
+        ImVec2 vpSize = bottomRight - topLeft;
+        // Flip Y for OpenGL viewport in framebuffer coordinates (handled by backend)
+        renderer->setViewport((int)vpTL.x, (int)vpTL.y, (int)vpSize.x, (int)vpSize.y);
+        float aspect = vpSize.x > 0 ? (vpSize.x / vpSize.y) : 1.0f;
+        renderer->setPerspective(50.f, aspect, 0.1f, 200.f);
+        renderer->setViewLookAt(camEye, camAt, camUp);
+
+        // Build model from TRS
+        float model[16]; ComposeTRS(model);
+
+        // Draw grid + cube
+        renderer->drawGrid(20.0f, 1.0f);
+        renderer->drawCube(model, 0xEFBF22FFu);
+
+        // ImGuizmo manipulation
+        ImGuizmo::BeginFrame();
+        ImGuizmo::SetDrawlist();
+        ImGuizmo::SetRect(inner.Min.x, inner.Min.y, inner.GetWidth(), inner.GetHeight());
+        float view[16], proj[16];
+        renderer->getViewMatrix(view);
+        renderer->getProjMatrix(proj);
+        ImGuizmo::Manipulate(view, proj, ImGuizmo::TRANSLATE, ImGuizmo::WORLD, model);
+        if (ImGuizmo::IsUsing()) {
+            UpdateTRSFromMatrix(model);
+        }
+    }
 
     ImGui::EndChild();
 }
@@ -543,23 +735,27 @@ void EditorUI::DrawAutoMode() {
     // Graph
     ImGui::BeginChild("Graph", ImVec2(center, h), true);
     ImGui::TextDisabled("Auto-mode Graph"); ImGui::Separator();
-    ImRect r(ImGui::GetCursorScreenPos(), ImGui::GetCursorScreenPos()+ImGui::GetContentRegionAvail());
-    ImGui::InvisibleButton("##graphbg", r.GetSize());
-    DrawNodeGrid(r, 24.f, IM_COL32(255,255,255,18));
-
-    // Mock nodes
-    ImDrawList* dl = ImGui::GetWindowDrawList();
-    ImVec2 a = r.Min + ImVec2(24,24);
-    ImVec2 b = a + ImVec2(140, 36);
-    dl->AddRectFilled(a, b, IM_COL32(32,32,36,220), 6.f);
-    dl->AddRect(a, b, IM_COL32(250,200,90,180), 6.f);
-    dl->AddText(a + ImVec2(8,10), IM_COL32(250,200,90,220), "Event Begin Play");
-
-    ImVec2 a2 = a + ImVec2(200, 0);
-    ImVec2 b2 = a2 + ImVec2(120, 36);
-    dl->AddRectFilled(a2, b2, IM_COL32(36,36,40,220), 6.f);
-    dl->AddRect(a2, b2, IM_COL32(130,130,140,160), 6.f);
-    dl->AddText(a2 + ImVec2(8,10), IM_COL32(220,220,230,220), "Print String");
+    // Simple imnodes canvas with a link from Event Begin Play -> Print String
+    ImVec2 canvasSize = ImGui::GetContentRegionAvail();
+    ImGui::BeginChild("nodes", canvasSize, false);
+    static bool nodesInit = false;
+    if(!nodesInit){ ImNodes::CreateContext(); ImNodes::StyleColorsClassic(); nodesInit = true; }
+    ImNodes::BeginNodeEditor();
+    const int id_event = 1;
+    const int id_print = 2;
+    const int attr_out = 101;
+    const int attr_in  = 201;
+    ImNodes::BeginNode(id_event);
+    ImNodes::BeginNodeTitleBar(); ImGui::Text("Event Begin Play"); ImNodes::EndNodeTitleBar();
+    ImNodes::BeginOutputAttribute(attr_out); ImGui::Text("flow"); ImNodes::EndOutputAttribute();
+    ImNodes::EndNode();
+    ImNodes::BeginNode(id_print);
+    ImNodes::BeginNodeTitleBar(); ImGui::Text("Print String"); ImNodes::EndNodeTitleBar();
+    ImNodes::BeginInputAttribute(attr_in); ImGui::Text("in"); ImNodes::EndInputAttribute();
+    ImNodes::EndNode();
+    ImNodes::Link(1001, attr_out, attr_in);
+    ImNodes::EndNodeEditor();
+    ImGui::EndChild();
 
     ImGui::EndChild();
 
@@ -580,6 +776,23 @@ void EditorUI::DrawAutoMode() {
     ImGui::EndChild();
 
     ImGui::End();
+}
+
+void EditorUI::ComposeTRS(float outM[16])
+{
+    glm::mat4 T = glm::translate(glm::mat4(1.0f), glm::vec3(tLocation.x, tLocation.y, tLocation.z));
+    glm::mat4 R = glm::yawPitchRoll(glm::radians(tRotation.y), glm::radians(tRotation.x), glm::radians(tRotation.z));
+    glm::mat4 S = glm::scale(glm::mat4(1.0f), glm::vec3(tScale.x, tScale.y, tScale.z));
+    glm::mat4 M = T * R * S;
+    memcpy(outM, glm::value_ptr(M), sizeof(float)*16);
+}
+void EditorUI::UpdateTRSFromMatrix(const float m[16])
+{
+    float t[3], r[3], s[3];
+    ImGuizmo::DecomposeMatrixToComponents(m, t, r, s);
+    tLocation = {t[0],t[1],t[2]};
+    tRotation = {r[0],r[1],r[2]};
+    tScale    = {s[0],s[1],s[2]};
 }
 
 /* ============== CODE MODE ============== */

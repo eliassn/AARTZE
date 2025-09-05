@@ -1,0 +1,46 @@
+/* Window scaffolding */
+QMainWindow { background: #0b0c0f; color: #e5e7eb; }
+QToolBar#TopBar { background: #0f1013; border-bottom: 1px solid #2a2b30; padding: 6px; spacing: 8px; }
+
+QDockWidget { background: #0f1013; titlebar-close-icon: none; titlebar-normal-icon: none; }
+QDockWidget > QWidget { background: #0f1013; }
+QDockWidget::title { padding: 6px 10px; background: #0f1013; color: #cbd5e1; border-bottom: 1px solid #2a2b30; }
+
+QTreeWidget, QWidget#DetailsPanel { background: #121317; border: 1px solid #2a2b30; border-radius: 12px; }
+
+/* “Pill” buttons */
+QPushButton[pill="true"] {
+  background: #1a1c22; border: 1px solid #2a2b30; border-radius: 8px; padding: 4px 10px;
+}
+QPushButton[pill="true"]:hover { background: #21232a; }
+QLabel[muted="true"] { color: #94a3b8; }
+
+/* Inputs */
+QSpinBox, QDoubleSpinBox, QLineEdit {
+  background: #0f1013; border: 1px solid #2a2b30; border-radius: 8px; padding: 4px 6px; color: #e5e7eb;
+}
+QTabBar::tab {
+  background: #121317; color: #d1d5db; border: 1px solid #2a2b30; border-radius: 8px; padding: 5px 8px; margin: 4px 4px 0 0;
+}
+QTabBar::tab:selected { background: #1c1f26; border-color: #f59e0b; color: #fde68a; }
+
+/* Mode bar pill buttons */
+QToolButton#Pill {
+  background: #1a1c22; border: 1px solid #2a2b30; border-radius: 8px; padding: 4px 10px; color: #e5e7eb;
+}
+QToolButton#Pill:hover { background: #21232a; }
+QToolButton#Pill::menu-indicator { image: none; width: 0; }
+
+/* Workspace dropdown menu */
+QMenu#WorkspaceMenu {
+  background: #0f1013; color: #e5e7eb; border: 1px solid #27272a; border-radius: 10px; padding: 6px; icon-size: 16px;
+}
+QMenu#WorkspaceMenu::item { padding: 6px 12px; border-radius: 6px; color: #f59e0b; }
+QMenu#WorkspaceMenu::item:selected { background: #1f2126; color: #fbbf24; }
+
+/* Workspace tabs along the top */
+QTabBar#WorkspaceTabs::tab {
+  background: #15171b; color: #cbd5e1; border: 1px solid #26282e; border-radius: 6px; padding: 6px 10px; margin-right: 6px;
+}
+QTabBar#WorkspaceTabs::tab:selected { background: #1c1f26; color: #ffffff; border-color: #3a3d46; }
+QTabBar#WorkspaceTabs::tab:hover { background: #1a1d23; }

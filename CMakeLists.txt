@@ -39,17 +39,23 @@ if(NOT DEFINED CMAKE_TOOLCHAIN_FILE)
 endif()
 
 # ===== JSON (Header Only) =====
-FetchContent_Declare(
-    json
-    GIT_REPOSITORY https://github.com/nlohmann/json.git
-    GIT_TAG v3.11.2
-)
-FetchContent_GetProperties(json)
-if(NOT json_POPULATED)
-    FetchContent_Populate(json)
+# Prefer vcpkg/system package; fall back to FetchContent only if missing.
+find_package(nlohmann_json CONFIG QUIET)
+if(NOT nlohmann_json_FOUND)
+  message(STATUS "nlohmann_json not found via package config; falling back to FetchContent")
+  FetchContent_Declare(
+      json
+      GIT_REPOSITORY https://github.com/nlohmann/json.git
+      GIT_TAG v3.11.2
+      GIT_SHALLOW TRUE
+  )
+  FetchContent_GetProperties(json)
+  if(NOT json_POPULATED)
+      FetchContent_Populate(json)
+  endif()
+  add_library(nlohmann_json INTERFACE)
+  target_include_directories(nlohmann_json INTERFACE ${json_SOURCE_DIR}/include)
 endif()
-add_library(nlohmann_json INTERFACE)
-target_include_directories(nlohmann_json INTERFACE ${json_SOURCE_DIR}/include)
 
 find_package(assimp CONFIG REQUIRED)
 
@@ -75,15 +81,8 @@ if(BUILD_ENGINE)
     find_package(glad CONFIG REQUIRED)
 
     # ===== GLFW =====
-    FetchContent_Declare(
-        glfw
-        GIT_REPOSITORY https://github.com/glfw/glfw.git
-        GIT_TAG 3.3.8
-    )
-    set(GLFW_BUILD_DOCS OFF CACHE BOOL "")
-    set(GLFW_BUILD_TESTS OFF CACHE BOOL "")
-    set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "")
-    FetchContent_MakeAvailable(glfw)
+    # Use vcpkg-provided glfw3 to avoid network fetch during configure
+    find_package(glfw3 CONFIG REQUIRED)
     file(GLOB_RECURSE ENGINE_SOURCES
         ${CMAKE_SOURCE_DIR}/AARTZE/**/*.cpp
         ${CMAKE_SOURCE_DIR}/AARTZE/systems/**/*.cpp
@@ -221,6 +220,48 @@ endif()
         target_link_libraries(imgui PUBLIC glfw OpenGL::GL)
         target_compile_definitions(imgui PUBLIC IMGUI_IMPL_OPENGL_LOADER_GLAD)
 
+        # ImGuizmo and imnodes (prefer local checkouts; fallback to FetchContent)
+        set(IMGUIZMO_DIR "" CACHE PATH "Path to local ImGuizmo (optional)")
+        set(IMNODES_DIR  "" CACHE PATH "Path to local imnodes (optional)")
+
+        if(IMGUIZMO_DIR AND EXISTS ${IMGUIZMO_DIR}/ImGuizmo.h)
+          set(imguizmo_SOURCE_DIR ${IMGUIZMO_DIR})
+        else()
+          include(FetchContent)
+          FetchContent_Declare(
+            imguizmo
+            GIT_REPOSITORY https://github.com/CedricGuillemet/ImGuizmo.git
+            GIT_TAG master
+            GIT_SHALLOW TRUE
+          )
+          FetchContent_MakeAvailable(imguizmo)
+        endif()
+        add_library(ImGuizmo STATIC ${imguizmo_SOURCE_DIR}/ImGuizmo.cpp)
+        target_include_directories(ImGuizmo PUBLIC ${imguizmo_SOURCE_DIR} ${IMGUI_DIR})
+        target_link_libraries(ImGuizmo PUBLIC imgui)
+
+        if(IMNODES_DIR AND EXISTS ${IMNODES_DIR}/imnodes.h)
+          set(imnodes_SOURCE_DIR ${IMNODES_DIR})
+        else()
+          include(FetchContent)
+          FetchContent_Declare(
+            imnodes
+            GIT_REPOSITORY https://github.com/Nelarius/imnodes.git
+            GIT_TAG v0.5
+            GIT_SHALLOW TRUE
+          )
+          FetchContent_MakeAvailable(imnodes)
+        endif()
+        add_library(imnodes_lib STATIC ${imnodes_SOURCE_DIR}/imnodes.cpp)
+        target_include_directories(imnodes_lib PUBLIC ${imnodes_SOURCE_DIR})
+        target_link_libraries(imnodes_lib PUBLIC imgui)
+        # ImNodes requires IMGUI_DEFINE_MATH_OPERATORS to be defined before including imgui.h
+        target_compile_definitions(imnodes_lib PRIVATE IMGUI_DEFINE_MATH_OPERATORS)
+        # Silence redefinition warning on MSVC when both CLI and header define it
+        if(MSVC)
+          target_compile_options(imnodes_lib PRIVATE /wd4005)
+        endif()
+
         # Make ImGui headers available to engine sources that embed UI hooks
         target_include_directories(AARTZE_lib PUBLIC ${IMGUI_DIR} ${IMGUI_DIR}/backends)
         target_compile_definitions(AARTZE_lib PUBLIC AARTZE_WITH_IMGUI=1)
@@ -228,10 +269,33 @@ endif()
         # AARTZE ImGui editor library
         add_library(AARTZE_imgui_editor STATIC
             ${CMAKE_SOURCE_DIR}/AARTZE/editor/AartzeEditor.cpp
+            ${CMAKE_SOURCE_DIR}/AARTZE/editor/Renderer.cpp
         )
-        target_include_directories(AARTZE_imgui_editor PUBLIC ${CMAKE_SOURCE_DIR}/AARTZE/editor)
-        target_link_libraries(AARTZE_imgui_editor PUBLIC imgui AARTZE_lib)
+        target_include_directories(AARTZE_imgui_editor PUBLIC 
+            ${CMAKE_SOURCE_DIR}/AARTZE/editor ${imguizmo_SOURCE_DIR} ${imnodes_SOURCE_DIR})
+        target_link_libraries(AARTZE_imgui_editor PUBLIC imgui AARTZE_lib ImGuizmo imnodes_lib)
         target_compile_definitions(AARTZE_imgui_editor PUBLIC IMGUI_DEFINE_MATH_OPERATORS)
+
+        # M3: Importer + Scene + GPU Upload (editor/runtime sources)
+        target_sources(AARTZE_imgui_editor PRIVATE
+          ${CMAKE_SOURCE_DIR}/AARTZE/runtime/Mesh.cpp
+          ${CMAKE_SOURCE_DIR}/AARTZE/runtime/GLMesh.cpp
+          ${CMAKE_SOURCE_DIR}/AARTZE/runtime/Scene.cpp
+          ${CMAKE_SOURCE_DIR}/AARTZE/runtime/Importer.cpp
+        )
+        target_include_directories(AARTZE_imgui_editor PUBLIC
+          ${CMAKE_SOURCE_DIR}/AARTZE/runtime
+        )
+        target_link_libraries(AARTZE_imgui_editor PUBLIC assimp::assimp)
+
+        # Ensure engine sources can include ImGuizmo headers when AARTZE_WITH_IMGUI is enabled
+        target_include_directories(AARTZE_lib PUBLIC ${imguizmo_SOURCE_DIR} ${imnodes_SOURCE_DIR})
+
+        # Standalone editor demo executable (keeps game exe untouched)
+        add_executable(AARTZE_ImGuiDemo ${CMAKE_SOURCE_DIR}/AARTZE/editor/app_main.cpp)
+        target_link_libraries(AARTZE_ImGuiDemo PRIVATE 
+            AARTZE_imgui_editor AARTZE_lib imgui ImGuizmo imnodes_lib glfw glad::glad OpenGL::GL)
+        target_compile_definitions(AARTZE_ImGuiDemo PRIVATE AARTZE_WITH_IMGUI=1 IMGUI_IMPL_OPENGL_LOADER_GLAD)
     endif()
 
 # ===== Game Executable =====
@@ -258,6 +322,35 @@ endif()
     else()
         message(STATUS "triangle.b64 not found; skipping copy")
     endif()
+endif()
+
+# ----- AARTZE modular build (opt-in) -----
+option(AARTZE_ENABLE_MODULAR "Enable new modular AARTZE build (libraries + sandbox)" ON)
+if (AARTZE_ENABLE_MODULAR)
+  add_subdirectory(src/aartze)
+endif()
+
+# Python bindings (pybind11) — adds aartzepy module linking AARTZE_lib
+# Optional: Python bindings (pybind11) — OFF by default so C++/ImGui builds never break
+option(BUILD_AARTZE_PYTHON "Build Python editor bindings (pybind11)" OFF)
+if (BUILD_AARTZE_PYTHON)
+  # Prefer binding against the local venv's Python if present
+  set(PYBIND11_FINDPYTHON ON CACHE BOOL "" FORCE)
+  if (WIN32)
+    if (EXISTS ${CMAKE_SOURCE_DIR}/.venv312/Scripts/python.exe)
+      set(Python3_EXECUTABLE ${CMAKE_SOURCE_DIR}/.venv312/Scripts/python.exe CACHE FILEPATH "" FORCE)
+      set(Python_EXECUTABLE  ${CMAKE_SOURCE_DIR}/.venv312/Scripts/python.exe CACHE FILEPATH "" FORCE)
+    elseif (EXISTS ${CMAKE_SOURCE_DIR}/.venv/Scripts/python.exe)
+      set(Python3_EXECUTABLE ${CMAKE_SOURCE_DIR}/.venv/Scripts/python.exe CACHE FILEPATH "" FORCE)
+      set(Python_EXECUTABLE  ${CMAKE_SOURCE_DIR}/.venv/Scripts/python.exe CACHE FILEPATH "" FORCE)
+    endif()
+  endif()
+  find_package(pybind11 CONFIG QUIET)
+  if (pybind11_FOUND AND EXISTS ${CMAKE_SOURCE_DIR}/python_bindings/CMakeLists.txt)
+    add_subdirectory(python_bindings)
+  else()
+    message(WARNING "pybind11 not found; skipping python_bindings. Install via vcpkg or set CMAKE_PREFIX_PATH.")
+  endif()
 endif()
 
 # Enable tests only if a tests directory is present

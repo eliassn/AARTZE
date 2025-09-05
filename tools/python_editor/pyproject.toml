@@ -1,0 +1,21 @@
+[project]
+name = "aartze-editor"
+version = "0.1.0"
+description = "AARTZE Python Editor (PySide6 UI shell for the engine)"
+requires-python = ">=3.10"
+dependencies = [
+  "PySide6==6.7.2",
+  "PySide6-Addons==6.7.2",
+  "PySide6-Qt6-WebEngine==6.7.2",
+  "NodeGraphQt==0.6.6",
+  "PyOpenGL==3.1.7",
+  "numpy==1.26.4",
+  "psutil==5.9.8",
+  "watchdog==4.0.1",
+  "QtAwesome==1.3.1",
+]
+
+[build-system]
+requires = ["setuptools>=62"]
+build-backend = "setuptools.build_meta"
+

@@ -1,0 +1,282 @@
+/* AARTZE – JSX-matched dark theme (Qt QSS)
+   Palette
+     bg-950  #0f1114   main window
+     bg-900  #111317   containers / docks / tab panes
+     bg-850  #15181d   group panels
+     bg-800  #171a1f   controls default
+     stroke  #23262b   1px borders
+     text    #e5e7eb   primary
+     text-2  #d1d5db   secondary
+     text-3  #9ca3af   muted
+     accent  #f59e0b   amber
+     accent2 #fbbf24   amber light
+*/
+
+* {
+  color: #e5e7eb;
+  background: transparent;
+  selection-background-color: #1f2937;
+  selection-color: #e5e7eb;
+  font-family: "Inter", "Segoe UI", "Roboto", "SF Pro Text", Arial, sans-serif;
+}
+
+/* ---------- Top level surfaces ---------- */
+
+QMainWindow, QWidget {
+  background: #0f1114;
+}
+
+QDockWidget {
+  titlebar-close-icon: url(:/__noop);   /* we’ll use toolbar buttons instead */
+  titlebar-normal-icon: url(:/__noop);
+  background: #111317;
+  border: 1px solid #23262b;
+  border-radius: 12px;
+  padding: 0px;
+}
+
+QDockWidget::title {
+  padding: 8px 10px;
+  margin: 0;
+  color: #d1d5db;
+  background: #111317;
+  border-bottom: 1px solid #23262b;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+QGroupBox {
+  background: #15181d;
+  border: 1px solid #23262b;
+  border-radius: 12px;
+  margin-top: 10px;
+}
+
+QGroupBox::title {
+  subcontrol-origin: margin;
+  left: 12px;
+  padding: 0 6px;
+  color: #a3a3a3;
+}
+
+/* ---------- Toolbars / Menus ---------- */
+
+QToolBar {
+  background: #121419;
+  border: 0;
+  border-bottom: 1px solid #23262b;
+  padding: 6px;
+  spacing: 6px;
+}
+
+QToolButton, QToolBar QToolButton {
+  background: #171a1f;
+  border: 1px solid #2a2e35;
+  border-radius: 8px;
+  padding: 6px 10px;
+}
+QToolButton:hover { background: #1d2128; }
+QToolButton:pressed { background: #0f1114; }
+
+QMenu {
+  background: #111317;
+  border: 1px solid #23262b;
+  border-radius: 10px;
+  padding: 6px;
+}
+QMenu::item {
+  color: #e5e7eb;
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+QMenu::item:selected { background: #1d2128; }
+
+/* ---------- Tabs ---------- */
+
+QTabWidget::pane {
+  background: #111317;
+  border: 1px solid #23262b;
+  border-radius: 12px;
+  top: -2px;
+}
+
+QTabBar::tab {
+  background: #101215;
+  color: #d1d5db;
+  border: 1px solid #2a2e35;
+  border-radius: 8px;
+  padding: 6px 10px;
+  margin: 6px 6px 0 0;
+}
+QTabBar::tab:hover { background: #161920; }
+QTabBar::tab:selected {
+  color: #fbbf24;
+  background: #1a1d23;
+  border: 1px solid #f59e0b;
+}
+
+/* ---------- Buttons & Inputs ---------- */
+
+QPushButton {
+  background: #171a1f;
+  color: #e5e7eb;
+  border: 1px solid #2a2e35;
+  border-radius: 8px;
+  padding: 6px 10px;
+}
+QPushButton:hover { background: #1d2128; }
+QPushButton:pressed { background: #0f1114; }
+
+/* “Primary/Accent” button: setProperty("accent", True) */
+QPushButton[accent="true"] {
+  background: rgba(245, 158, 11, 0.18);
+  color: #fbbf24;
+  border: 1px solid #f59e0b;
+}
+QPushButton[accent="true"]:hover {
+  background: rgba(245, 158, 11, 0.28);
+}
+
+QLineEdit, QPlainTextEdit, QTextEdit,
+QSpinBox, QDoubleSpinBox, QComboBox {
+  background: #0e1014;
+  color: #e5e7eb;
+  border: 1px solid #2a2e35;
+  border-radius: 8px;
+  padding: 6px 8px;
+  min-height: 26px;
+}
+QLineEdit:focus, QPlainTextEdit:focus, QTextEdit:focus,
+QSpinBox:focus, QDoubleSpinBox:focus, QComboBox:focus {
+  border: 1px solid #f59e0b;
+}
+
+/* Combo popup */
+QComboBox QAbstractItemView {
+  background: #111317;
+  border: 1px solid #23262b;
+  selection-background-color: #1d2128;
+  outline: none;
+  padding: 6px;
+  border-radius: 8px;
+}
+
+/* ---------- Lists, Trees, Tables ---------- */
+
+QTreeView, QTreeWidget, QListView, QTableView {
+  background: #111317;
+  alternate-background-color: #0f1114;
+  border: 1px solid #23262b;
+  border-radius: 12px;
+  show-decoration-selected: 1;
+}
+
+QTreeView::item, QTreeWidget::item, QListView::item {
+  padding: 6px 8px;
+  color: #d1d5db;
+}
+QTreeView::item:selected, QTreeWidget::item:selected, QListView::item:selected {
+  background: #1d2128;
+  color: #e5e7eb;
+  border-radius: 6px;
+}
+
+QHeaderView::section {
+  background: #121419;
+  color: #9ca3af;
+  border: 0;
+  border-bottom: 1px solid #23262b;
+  padding: 6px 8px;
+}
+
+/* ---------- Splitters / Frames ---------- */
+
+QSplitter::handle {
+  background: #0f1114;
+  image: none;
+  width: 8px;
+}
+QSplitter::handle:hover { background: #15181d; }
+
+/* Horizontal/vertical lines if you use QFrame */
+QFrame[frameShape="4"], /* HLine */
+QFrame[frameShape="5"]  /* VLine */ {
+  background: #23262b;
+}
+
+/* ---------- Scrollbars (slim) ---------- */
+
+QScrollBar:vertical {
+  background: transparent;
+  width: 10px;
+  margin: 2px;
+}
+QScrollBar::handle:vertical {
+  background: #23262b;
+  min-height: 30px;
+  border-radius: 6px;
+}
+QScrollBar::handle:vertical:hover { background: #2e3238; }
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical { height: 0; }
+
+QScrollBar:horizontal {
+  background: transparent;
+  height: 10px;
+  margin: 2px;
+}
+QScrollBar::handle:horizontal {
+  background: #23262b;
+  min-width: 30px;
+  border-radius: 6px;
+}
+QScrollBar::handle:horizontal:hover { background: #2e3238; }
+QScrollBar::add-line:horizontal, QScrollBar::sub-line:horizontal { width: 0; }
+
+/* ---------- Status bar / Tooltips ---------- */
+
+QStatusBar {
+  background: #121419;
+  border-top: 1px solid #23262b;
+}
+QToolTip {
+  background: #111317;
+  color: #e5e7eb;
+  border: 1px solid #23262b;
+  padding: 6px 8px;
+  border-radius: 8px;
+}
+
+/* ---------- Graphics view (NodeGraphQt viewer, Monaco area border) ---------- */
+
+QGraphicsView {
+  background: #111317;
+  border: 1px solid #23262b;
+  border-radius: 12px;
+}
+
+/* ---------- OpenGL viewport wrapper panel ---------- */
+
+#ViewportPanel, #OutlinerPanel, #DetailsPanel {
+  /* If you set objectNames on those QGroupBox wrappers */
+  background: #111317;
+  border: 1px solid #23262b;
+  border-radius: 16px;
+}
+
+/* ---------- Subtle focus ring helper (apply via setProperty("ring", True)) ---------- */
+
+*[ring="true"]:focus {
+  outline: none;
+  border: 1px solid #f59e0b;
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.18);
+}
+
+/* ---------- Danger/destructive (setProperty("danger", True)) ---------- */
+
+QPushButton[danger="true"] {
+  background: rgba(244, 63, 94, 0.16);
+  color: #fecaca;
+  border: 1px solid #f43f5e;
+}
+QPushButton[danger="true"]:hover { background: rgba(244, 63, 94, 0.26); }
+
