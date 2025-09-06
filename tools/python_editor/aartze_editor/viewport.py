@@ -191,7 +191,7 @@ class GLViewport(QtOpenGLWidgets.QOpenGLWidget):
             if not eng and _eng_err:
                 p = QtGui.QPainter(self)
                 p.setPen(QtGui.QPen(QtGui.QColor('#f59e0b')))
-                p.drawText(12, 18, 'Engine module not loaded – using Python fallback')
+                p.drawText(12, 18, 'Engine module not loaded - using Python fallback')
                 p.end()
 
         # Axis triad overlay (Blender-like, top-right with circles)
