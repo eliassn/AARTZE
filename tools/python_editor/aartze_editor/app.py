@@ -116,6 +116,15 @@ def _outliner_panel():
         it.setData(0, QtCore.Qt.UserRole+0, eng_id(name))
         it.setData(0, QtCore.Qt.UserRole+1, True)   # visible
         it.setData(0, QtCore.Qt.UserRole+2, False)  # locked
+        # Assign left icon using bundled Lucide SVGs
+        icon_key = {"World":"world", "Camera":"camera", "Cube":"mesh", "Light":"light"}.get(name)
+        if icon_key:
+            try:
+                ico = icons.get(icon_key)
+                if ico is not None:
+                    it.setIcon(0, ico)
+            except Exception:
+                pass
         update_icons(it)
         return it
 
@@ -180,8 +189,8 @@ class PropsPanel(QtWidgets.QFrame):
             pills.addWidget(b)
             page = QtWidgets.QWidget(); pv = QtWidgets.QVBoxLayout(page); pv.setContentsMargins(0,6,0,0); pv.setSpacing(6)
             pv.addWidget(QtWidgets.QLabel(f"Import {label}"))
-            path = QtWidgets.QLineEdit(); path.setPlaceholderText("…"); path.setObjectName("ImportPath")
-            choose = QtWidgets.QPushButton("Choose File…"); choose.setObjectName("ChooseBtn")
+            path = QtWidgets.QLineEdit(); path.setPlaceholderText("ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦"); path.setObjectName("ImportPath")
+            choose = QtWidgets.QPushButton("Choose FileÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦"); choose.setObjectName("ChooseBtn")
             pv.addWidget(path); pv.addWidget(choose); pv.addStretch(); stack.addWidget(page)
         v.addLayout(pills); v.addWidget(stack)
 
@@ -233,15 +242,15 @@ def _editor_toolbar():
         om.addAction(m)
     obj.setMenu(om); bar.addWidget(obj)
     # Orientation / pivot
-    for txt in ["Global","Local","Pivot ▾"]:
+    for txt in ["Global","Local","Pivot ÃƒÂ¢Ã¢â‚¬â€œÃ‚Â¾"]:
         b = QtWidgets.QToolButton(text=txt); b.setToolTip(txt); bar.addWidget(b)
     # Snapping
     mag = QtWidgets.QToolButton(); mag.setToolTip("Snapping"); icons.set_icon(mag, "magnet", color="#93c5fd"); bar.addWidget(mag)
-    inc = QtWidgets.QToolButton(text="Increment ▾"); inc.setToolTip("Snap Increment"); bar.addWidget(inc)
+    inc = QtWidgets.QToolButton(text="Increment ÃƒÂ¢Ã¢â‚¬â€œÃ‚Â¾"); inc.setToolTip("Snap Increment"); bar.addWidget(inc)
     prop = QtWidgets.QToolButton(text="Proportional Editing"); prop.setToolTip("Proportional Editing"); bar.addWidget(prop)
     bar.addSeparator()
-    vb = QtWidgets.QToolButton(text="Perspective ▾"); vb.setToolTip("View"); bar.addWidget(vb)
-    sh = QtWidgets.QToolButton(text="Shading ▾"); sh.setToolTip("Shading"); bar.addWidget(sh)
+    vb = QtWidgets.QToolButton(text="Perspective ÃƒÂ¢Ã¢â‚¬â€œÃ‚Â¾"); vb.setToolTip("View"); bar.addWidget(vb)
+    sh = QtWidgets.QToolButton(text="Shading ÃƒÂ¢Ã¢â‚¬â€œÃ‚Â¾"); sh.setToolTip("Shading"); bar.addWidget(sh)
     ov = QtWidgets.QToolButton(text="Overlays"); ov.setToolTip("Overlays"); bar.addWidget(ov)
     bar.addSeparator()
     plat = QtWidgets.QToolButton(text="Platforms"); plat.setToolTip("Platforms"); bar.addWidget(plat)
@@ -257,7 +266,7 @@ class EditorMode(QtWidgets.QWidget):
         # viewport wrapper with rounded frame
         vpWrap = QtWidgets.QFrame(); vpWrap.setObjectName("ViewportWrap")
         # Overlay layout: viewport + tool shelf overlay
-        grid = QtWidgets.QGridLayout(vpWrap); grid.setContentsMargins(10,10,10,10)
+        grid = QtWidgets.QGridLayout(vpWrap); grid.setContentsMargins(0,0,0,0)
         grid.setSpacing(0)
         self.viewport = GLViewport();
         self.viewport.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
@@ -299,13 +308,20 @@ class EditorMode(QtWidgets.QWidget):
         # Bind viewport <-> properties
         self.viewport.transformChanged.connect(self.props.setFromViewport)
         self.props.locationChanged.connect(self.viewport.setLocation)
-        # Selection from Outliner → viewport + props
+        # Selection from Outliner ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢ viewport + props
         try:
             tree = outliner.tree  # type: ignore[attr-defined]
             def on_sel(cur, prev=None):
                 name = cur.text(0) if cur else "Cube"
                 self.viewport.setSelectedName(name)
             tree.currentItemChanged.connect(on_sel)
+            # Default select Cube so gizmo/props hydrate
+            it = tree.topLevelItem(0)
+            if it and it.childCount() > 0:
+                for i in range(it.childCount()):
+                    if it.child(i).text(0) == 'Cube':
+                        tree.setCurrentItem(it.child(i))
+                        break
         except Exception:
             pass
 
@@ -522,7 +538,7 @@ def build_window() -> QtWidgets.QMainWindow:
         stack.setCurrentIndex(idx)
     modebar.modeChanged.connect(on_mode)
 
-    # Workspace switching maps to pages (Layout/Modeling → editor, Shading → shading)
+    # Workspace switching maps to pages (Layout/Modeling ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢ editor, Shading ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢ shading)
     def on_workspace(name: str):
         if name == "Shading":
             stack.setCurrentIndex(key_to_index.get("shading", 0))

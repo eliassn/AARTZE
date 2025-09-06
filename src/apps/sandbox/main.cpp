@@ -1,5 +1,6 @@
-#include <GLFW/glfw3.h>
+// Include glad first so it provides the GL headers before GLFW pulls <GL/gl.h>
 #include <glad/glad.h>
+#include <GLFW/glfw3.h>
 #include <cstdio>
 
 static void errorcb(int code, const char* desc){ std::fprintf(stderr, "GLFW error %d: %s\n", code, desc); }
@@ -28,4 +29,3 @@ int main(){
   glfwTerminate();
   return 0;
 }
-

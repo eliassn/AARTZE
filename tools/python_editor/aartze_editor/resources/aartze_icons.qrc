@@ -11,5 +11,11 @@
     <file>icons/move.svg</file>
     <file>icons/rotate.svg</file>
     <file>icons/scale.svg</file>
+      <file>icons/eye.svg</file>
+    <file>icons/eye-slash.svg</file>
+    <file>icons/lock.svg</file>
+    <file>icons/unlock.svg</file>
+    <file>icons/search.svg</file>
   </qresource>
 </RCC>
+

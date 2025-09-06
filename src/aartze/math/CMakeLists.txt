@@ -1,5 +1,4 @@
-add_library(aartze_math STATIC Math.h)
-target_include_directories(aartze_math PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/../..)
-target_compile_features(aartze_math PUBLIC cxx_std_17)
-target_link_libraries(aartze_math PUBLIC glm::glm)
-
+## Math is header-only for now → make it INTERFACE so no .lib is expected
+add_library(aartze_math INTERFACE)
+target_include_directories(aartze_math INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/../..)
+target_link_libraries(aartze_math INTERFACE glm::glm)

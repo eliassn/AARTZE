@@ -1,4 +1,6 @@
 from typing import Optional
+from pathlib import Path
+from PySide6 import QtGui
 
 try:
     import qtawesome as qta  # type: ignore
@@ -60,14 +62,42 @@ _MAP = {
 }
 
 
+def _svg_icon_from_resources(name: str) -> Optional[QtGui.QIcon]:
+    base = Path(__file__).resolve().parent / "resources" / "icons"
+    # Try direct name.svg then alias maps
+    for fname in (f"{name}.svg",):
+        p = base / fname
+        if p.exists():
+            ico = QtGui.QIcon(str(p))
+            if not ico.isNull():
+                return ico
+    # Simple aliases between lucide/fa naming
+    aliases = {
+        "eye-slash": "eye-off",
+        "file-code": "file",
+    }
+    alt = aliases.get(name)
+    if alt:
+        p = base / f"{alt}.svg"
+        if p.exists():
+            ico = QtGui.QIcon(str(p))
+            if not ico.isNull():
+                return ico
+    return None
+
+
 def get(name: str, color: str = "#e5e7eb"):
-    if qta is None:
-        return None
-    for key in _MAP.get(name, []):
-        try:
-            return qta.icon(key, color=color)
-        except Exception:
-            continue
+    # 1) Prefer QtAwesome if available (supports coloring)
+    if qta is not None:
+        for key in _MAP.get(name, []):
+            try:
+                return qta.icon(key, color=color)
+            except Exception:
+                continue
+    # 2) Fallback to local Lucide SVGs bundled under resources/icons
+    svg = _svg_icon_from_resources(name)
+    if svg is not None:
+        return svg
     return None
 
 

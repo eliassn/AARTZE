@@ -1,0 +1,464 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{D81C9CCA-EF50-378E-B319-4D848CB258A8}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <VcpkgEnabled>false</VcpkgEnabled>
+    <WindowsTargetPlatformVersion>10.0.22621.0</WindowsTargetPlatformVersion>
+    <Platform>x64</Platform>
+    <ProjectName>aartze_sandbox</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="do_not_import_user.props" Condition="exists('do_not_import_user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\locks\Downloads\AARTZE\AARTZE\build312\src\aartze\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">aartze_sandbox.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">aartze_sandbox</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\locks\Downloads\AARTZE\AARTZE\build312\src\aartze\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">aartze_sandbox.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">aartze_sandbox</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\locks\Downloads\AARTZE\AARTZE\build312\src\aartze\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">aartze_sandbox.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">aartze_sandbox</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\locks\Downloads\AARTZE\AARTZE\build312\src\aartze\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">aartze_sandbox.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">aartze_sandbox</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</GenerateManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\locks\Downloads\AARTZE\AARTZE\thirdparty\glm-master;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\core\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\math\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\ecs\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\geometry\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\input\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\render\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\import\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\physics\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\scripting\..\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "C:/Users/locks/Downloads/AARTZE/AARTZE/build312/vcpkg_installed/x64-windows/include" /external:I "C:/Users/locks/Downloads/AARTZE/AARTZE/build312/vcpkg_installed/x64-windows/include/bullet" /external:I "C:/Users/locks/Downloads/AARTZE/AARTZE/build312/vcpkg_installed/x64-windows/include/python3.12"</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;GLFW_DLL;Py_NO_LINK_LIB;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;GLFW_DLL;Py_NO_LINK_LIB;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\locks\Downloads\AARTZE\AARTZE\thirdparty\glm-master;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\core\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\math\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\ecs\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\geometry\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\input\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\render\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\import\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\physics\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\scripting\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\include;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\include\bullet;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\include\python3.12;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\locks\Downloads\AARTZE\AARTZE\thirdparty\glm-master;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\core\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\math\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\ecs\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\geometry\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\input\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\render\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\import\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\physics\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\scripting\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\include;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\include\bullet;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\include\python3.12;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PostBuildEvent>
+      <Message></Message>
+      <Command>setlocal
+C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noprofile -executionpolicy Bypass -file C:/Users/locks/Downloads/AARTZE/AARTZE/vcpkg/scripts/buildsystems/msbuild/applocal.ps1 -targetBinary C:/Users/locks/Downloads/AARTZE/AARTZE/build312/src/aartze/Debug/aartze_sandbox.exe -installedDir C:/Users/locks/Downloads/AARTZE/AARTZE/build312/vcpkg_installed/x64-windows/debug/bin -OutVariable out
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PostBuildEvent>
+    <Link>
+      <AdditionalDependencies>..\..\vcpkg_installed\x64-windows\debug\lib\glad.lib;OpenGL32.lib;ecs\Debug\aartze_ecs.lib;geometry\Debug\aartze_geometry.lib;input\Debug\aartze_input.lib;import\Debug\aartze_import.lib;..\..\vcpkg_installed\x64-windows\debug\lib\assimp-vc143-mtd.lib;physics\Debug\aartze_physics.lib;..\..\vcpkg_installed\x64-windows\debug\lib\BulletDynamics_Debug.lib;..\..\vcpkg_installed\x64-windows\debug\lib\BulletCollision_Debug.lib;..\..\vcpkg_installed\x64-windows\debug\lib\LinearMath_Debug.lib;scripting\Debug\aartze_scripting.lib;render\Debug\aartze_render.lib;..\..\vcpkg_installed\x64-windows\debug\lib\glfw3dll.lib;..\..\vcpkg_installed\x64-windows\debug\lib\glad.lib;core\Debug\aartze_core.lib;..\..\vcpkg_installed\x64-windows\debug\lib\glm.lib;..\..\vcpkg_installed\x64-windows\debug\lib\python312_d.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <DataExecutionPrevention></DataExecutionPrevention>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImageHasSafeExceptionHandlers></ImageHasSafeExceptionHandlers>
+      <ImportLibrary>C:/Users/locks/Downloads/AARTZE/AARTZE/build312/src/aartze/Debug/aartze_sandbox.lib</ImportLibrary>
+      <LinkErrorReporting></LinkErrorReporting>
+      <ProgramDataBaseFile>C:/Users/locks/Downloads/AARTZE/AARTZE/build312/src/aartze/Debug/aartze_sandbox.pdb</ProgramDataBaseFile>
+      <RandomizedBaseAddress></RandomizedBaseAddress>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\locks\Downloads\AARTZE\AARTZE\thirdparty\glm-master;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\core\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\math\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\ecs\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\geometry\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\input\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\render\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\import\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\physics\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\scripting\..\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "C:/Users/locks/Downloads/AARTZE/AARTZE/build312/vcpkg_installed/x64-windows/include" /external:I "C:/Users/locks/Downloads/AARTZE/AARTZE/build312/vcpkg_installed/x64-windows/include/bullet" /external:I "C:/Users/locks/Downloads/AARTZE/AARTZE/build312/vcpkg_installed/x64-windows/include/python3.12"</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;GLFW_DLL;Py_NO_LINK_LIB;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;GLFW_DLL;Py_NO_LINK_LIB;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\locks\Downloads\AARTZE\AARTZE\thirdparty\glm-master;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\core\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\math\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\ecs\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\geometry\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\input\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\render\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\import\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\physics\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\scripting\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\include;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\include\bullet;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\include\python3.12;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\locks\Downloads\AARTZE\AARTZE\thirdparty\glm-master;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\core\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\math\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\ecs\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\geometry\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\input\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\render\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\import\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\physics\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\scripting\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\include;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\include\bullet;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\include\python3.12;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PostBuildEvent>
+      <Message></Message>
+      <Command>setlocal
+C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noprofile -executionpolicy Bypass -file C:/Users/locks/Downloads/AARTZE/AARTZE/vcpkg/scripts/buildsystems/msbuild/applocal.ps1 -targetBinary C:/Users/locks/Downloads/AARTZE/AARTZE/build312/src/aartze/Release/aartze_sandbox.exe -installedDir C:/Users/locks/Downloads/AARTZE/AARTZE/build312/vcpkg_installed/x64-windows/bin -OutVariable out
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PostBuildEvent>
+    <Link>
+      <AdditionalDependencies>..\..\vcpkg_installed\x64-windows\lib\glad.lib;OpenGL32.lib;ecs\Release\aartze_ecs.lib;geometry\Release\aartze_geometry.lib;input\Release\aartze_input.lib;import\Release\aartze_import.lib;..\..\vcpkg_installed\x64-windows\lib\assimp-vc143-mt.lib;physics\Release\aartze_physics.lib;..\..\vcpkg_installed\x64-windows\lib\BulletDynamics.lib;..\..\vcpkg_installed\x64-windows\lib\BulletCollision.lib;..\..\vcpkg_installed\x64-windows\lib\LinearMath.lib;scripting\Release\aartze_scripting.lib;render\Release\aartze_render.lib;..\..\vcpkg_installed\x64-windows\lib\glfw3dll.lib;..\..\vcpkg_installed\x64-windows\lib\glad.lib;core\Release\aartze_core.lib;..\..\vcpkg_installed\x64-windows\lib\glm.lib;..\..\vcpkg_installed\x64-windows\lib\python312.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <DataExecutionPrevention></DataExecutionPrevention>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImageHasSafeExceptionHandlers></ImageHasSafeExceptionHandlers>
+      <ImportLibrary>C:/Users/locks/Downloads/AARTZE/AARTZE/build312/src/aartze/Release/aartze_sandbox.lib</ImportLibrary>
+      <LinkErrorReporting></LinkErrorReporting>
+      <ProgramDataBaseFile>C:/Users/locks/Downloads/AARTZE/AARTZE/build312/src/aartze/Release/aartze_sandbox.pdb</ProgramDataBaseFile>
+      <RandomizedBaseAddress></RandomizedBaseAddress>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\locks\Downloads\AARTZE\AARTZE\thirdparty\glm-master;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\core\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\math\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\ecs\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\geometry\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\input\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\render\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\import\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\physics\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\scripting\..\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "C:/Users/locks/Downloads/AARTZE/AARTZE/build312/vcpkg_installed/x64-windows/include" /external:I "C:/Users/locks/Downloads/AARTZE/AARTZE/build312/vcpkg_installed/x64-windows/include/bullet" /external:I "C:/Users/locks/Downloads/AARTZE/AARTZE/build312/vcpkg_installed/x64-windows/include/python3.12"</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;GLFW_DLL;Py_NO_LINK_LIB;CMAKE_INTDIR="MinSizeRel"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;GLFW_DLL;Py_NO_LINK_LIB;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\locks\Downloads\AARTZE\AARTZE\thirdparty\glm-master;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\core\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\math\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\ecs\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\geometry\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\input\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\render\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\import\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\physics\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\scripting\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\include;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\include\bullet;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\include\python3.12;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\locks\Downloads\AARTZE\AARTZE\thirdparty\glm-master;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\core\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\math\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\ecs\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\geometry\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\input\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\render\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\import\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\physics\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\scripting\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\include;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\include\bullet;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\include\python3.12;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PostBuildEvent>
+      <Message></Message>
+      <Command>setlocal
+C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noprofile -executionpolicy Bypass -file C:/Users/locks/Downloads/AARTZE/AARTZE/vcpkg/scripts/buildsystems/msbuild/applocal.ps1 -targetBinary C:/Users/locks/Downloads/AARTZE/AARTZE/build312/src/aartze/MinSizeRel/aartze_sandbox.exe -installedDir C:/Users/locks/Downloads/AARTZE/AARTZE/build312/vcpkg_installed/x64-windows/bin -OutVariable out
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PostBuildEvent>
+    <Link>
+      <AdditionalDependencies>..\..\vcpkg_installed\x64-windows\lib\glad.lib;OpenGL32.lib;ecs\MinSizeRel\aartze_ecs.lib;geometry\MinSizeRel\aartze_geometry.lib;input\MinSizeRel\aartze_input.lib;import\MinSizeRel\aartze_import.lib;..\..\vcpkg_installed\x64-windows\lib\assimp-vc143-mt.lib;physics\MinSizeRel\aartze_physics.lib;..\..\vcpkg_installed\x64-windows\lib\BulletDynamics.lib;..\..\vcpkg_installed\x64-windows\lib\BulletCollision.lib;..\..\vcpkg_installed\x64-windows\lib\LinearMath.lib;scripting\MinSizeRel\aartze_scripting.lib;render\MinSizeRel\aartze_render.lib;..\..\vcpkg_installed\x64-windows\lib\glfw3dll.lib;..\..\vcpkg_installed\x64-windows\lib\glad.lib;core\MinSizeRel\aartze_core.lib;..\..\vcpkg_installed\x64-windows\lib\glm.lib;..\..\vcpkg_installed\x64-windows\lib\python312.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <DataExecutionPrevention></DataExecutionPrevention>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImageHasSafeExceptionHandlers></ImageHasSafeExceptionHandlers>
+      <ImportLibrary>C:/Users/locks/Downloads/AARTZE/AARTZE/build312/src/aartze/MinSizeRel/aartze_sandbox.lib</ImportLibrary>
+      <LinkErrorReporting></LinkErrorReporting>
+      <ProgramDataBaseFile>C:/Users/locks/Downloads/AARTZE/AARTZE/build312/src/aartze/MinSizeRel/aartze_sandbox.pdb</ProgramDataBaseFile>
+      <RandomizedBaseAddress></RandomizedBaseAddress>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\locks\Downloads\AARTZE\AARTZE\thirdparty\glm-master;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\core\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\math\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\ecs\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\geometry\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\input\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\render\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\import\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\physics\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\scripting\..\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "C:/Users/locks/Downloads/AARTZE/AARTZE/build312/vcpkg_installed/x64-windows/include" /external:I "C:/Users/locks/Downloads/AARTZE/AARTZE/build312/vcpkg_installed/x64-windows/include/bullet" /external:I "C:/Users/locks/Downloads/AARTZE/AARTZE/build312/vcpkg_installed/x64-windows/include/python3.12"</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;GLFW_DLL;Py_NO_LINK_LIB;CMAKE_INTDIR="RelWithDebInfo"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;GLFW_DLL;Py_NO_LINK_LIB;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\locks\Downloads\AARTZE\AARTZE\thirdparty\glm-master;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\core\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\math\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\ecs\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\geometry\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\input\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\render\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\import\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\physics\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\scripting\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\include;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\include\bullet;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\include\python3.12;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\locks\Downloads\AARTZE\AARTZE\thirdparty\glm-master;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\core\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\math\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\ecs\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\geometry\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\input\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\render\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\import\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\physics\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\scripting\..\..;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\include;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\include\bullet;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\include\python3.12;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PostBuildEvent>
+      <Message></Message>
+      <Command>setlocal
+C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noprofile -executionpolicy Bypass -file C:/Users/locks/Downloads/AARTZE/AARTZE/vcpkg/scripts/buildsystems/msbuild/applocal.ps1 -targetBinary C:/Users/locks/Downloads/AARTZE/AARTZE/build312/src/aartze/RelWithDebInfo/aartze_sandbox.exe -installedDir C:/Users/locks/Downloads/AARTZE/AARTZE/build312/vcpkg_installed/x64-windows/bin -OutVariable out
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PostBuildEvent>
+    <Link>
+      <AdditionalDependencies>..\..\vcpkg_installed\x64-windows\lib\glad.lib;OpenGL32.lib;ecs\RelWithDebInfo\aartze_ecs.lib;geometry\RelWithDebInfo\aartze_geometry.lib;input\RelWithDebInfo\aartze_input.lib;import\RelWithDebInfo\aartze_import.lib;..\..\vcpkg_installed\x64-windows\lib\assimp-vc143-mt.lib;physics\RelWithDebInfo\aartze_physics.lib;..\..\vcpkg_installed\x64-windows\lib\BulletDynamics.lib;..\..\vcpkg_installed\x64-windows\lib\BulletCollision.lib;..\..\vcpkg_installed\x64-windows\lib\LinearMath.lib;scripting\RelWithDebInfo\aartze_scripting.lib;render\RelWithDebInfo\aartze_render.lib;..\..\vcpkg_installed\x64-windows\lib\glfw3dll.lib;..\..\vcpkg_installed\x64-windows\lib\glad.lib;core\RelWithDebInfo\aartze_core.lib;..\..\vcpkg_installed\x64-windows\lib\glm.lib;..\..\vcpkg_installed\x64-windows\lib\python312.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <DataExecutionPrevention></DataExecutionPrevention>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImageHasSafeExceptionHandlers></ImageHasSafeExceptionHandlers>
+      <ImportLibrary>C:/Users/locks/Downloads/AARTZE/AARTZE/build312/src/aartze/RelWithDebInfo/aartze_sandbox.lib</ImportLibrary>
+      <LinkErrorReporting></LinkErrorReporting>
+      <ProgramDataBaseFile>C:/Users/locks/Downloads/AARTZE/AARTZE/build312/src/aartze/RelWithDebInfo/aartze_sandbox.pdb</ProgramDataBaseFile>
+      <RandomizedBaseAddress></RandomizedBaseAddress>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\locks\Downloads\AARTZE\AARTZE\src\aartze\CMakeLists.txt">
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/locks/Downloads/AARTZE/AARTZE/src/aartze/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/locks/Downloads/AARTZE/AARTZE -BC:/Users/locks/Downloads/AARTZE/AARTZE/build312 --check-stamp-file C:/Users/locks/Downloads/AARTZE/AARTZE/build312/src/aartze/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Program Files\CMake\share\cmake-4.1\Modules\CMakeCheckCompilerFlagCommonPatterns.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CMakeFindDependencyMacro.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CheckCXXCompilerFlag.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CheckCXXSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\FindPython.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\FindPython\Support.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Internal\CheckCompilerFlag.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Internal\CheckFlagCommonConfig.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Internal\CheckSourceCompiles.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\assimp\assimpConfig.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\assimp\assimpConfigVersion.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\assimp\assimpTargets.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\bullet3\BulletConfig.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\bullet3\BulletConfigVersion.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\bullet3\BulletTargets.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\entt\EnTTConfig.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\entt\EnTTConfigVersion.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\entt\EnTTTargets.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glad\gladConfig.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glad\gladConfigVersion.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glad\gladTargets.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glfw3\glfw3Config.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glfw3\glfw3ConfigVersion.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glfw3\glfw3Targets.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glm\glmConfig.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glm\glmConfigVersion.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\nlohmann_json\nlohmann_jsonConfig.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\nlohmann_json\nlohmann_jsonConfigVersion.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\openal-soft\OpenALConfig.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\openal-soft\OpenALTargets.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\pybind11\pybind11Common.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\pybind11\pybind11Config.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\pybind11\pybind11ConfigVersion.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\pybind11\pybind11NewTools.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\pybind11\pybind11Targets.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\python\vcpkg-cmake-wrapper.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\locks\Downloads\AARTZE\AARTZE\build312\src\aartze\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/locks/Downloads/AARTZE/AARTZE/src/aartze/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/locks/Downloads/AARTZE/AARTZE -BC:/Users/locks/Downloads/AARTZE/AARTZE/build312 --check-stamp-file C:/Users/locks/Downloads/AARTZE/AARTZE/build312/src/aartze/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Program Files\CMake\share\cmake-4.1\Modules\CMakeCheckCompilerFlagCommonPatterns.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CMakeFindDependencyMacro.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CheckCXXCompilerFlag.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CheckCXXSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\FindPython.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\FindPython\Support.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Internal\CheckCompilerFlag.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Internal\CheckFlagCommonConfig.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Internal\CheckSourceCompiles.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\assimp\assimpConfig.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\assimp\assimpConfigVersion.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\assimp\assimpTargets.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\bullet3\BulletConfig.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\bullet3\BulletConfigVersion.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\bullet3\BulletTargets.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\entt\EnTTConfig.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\entt\EnTTConfigVersion.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\entt\EnTTTargets.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glad\gladConfig.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glad\gladConfigVersion.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glad\gladTargets.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glfw3\glfw3Config.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glfw3\glfw3ConfigVersion.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glfw3\glfw3Targets.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glm\glmConfig.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glm\glmConfigVersion.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\nlohmann_json\nlohmann_jsonConfig.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\nlohmann_json\nlohmann_jsonConfigVersion.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\openal-soft\OpenALConfig.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\openal-soft\OpenALTargets.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\pybind11\pybind11Common.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\pybind11\pybind11Config.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\pybind11\pybind11ConfigVersion.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\pybind11\pybind11NewTools.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\pybind11\pybind11Targets.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\python\vcpkg-cmake-wrapper.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\locks\Downloads\AARTZE\AARTZE\build312\src\aartze\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/Users/locks/Downloads/AARTZE/AARTZE/src/aartze/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/locks/Downloads/AARTZE/AARTZE -BC:/Users/locks/Downloads/AARTZE/AARTZE/build312 --check-stamp-file C:/Users/locks/Downloads/AARTZE/AARTZE/build312/src/aartze/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Program Files\CMake\share\cmake-4.1\Modules\CMakeCheckCompilerFlagCommonPatterns.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CMakeFindDependencyMacro.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CheckCXXCompilerFlag.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CheckCXXSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\FindPython.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\FindPython\Support.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Internal\CheckCompilerFlag.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Internal\CheckFlagCommonConfig.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Internal\CheckSourceCompiles.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\assimp\assimpConfig.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\assimp\assimpConfigVersion.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\assimp\assimpTargets.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\bullet3\BulletConfig.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\bullet3\BulletConfigVersion.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\bullet3\BulletTargets.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\entt\EnTTConfig.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\entt\EnTTConfigVersion.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\entt\EnTTTargets.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glad\gladConfig.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glad\gladConfigVersion.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glad\gladTargets.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glfw3\glfw3Config.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glfw3\glfw3ConfigVersion.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glfw3\glfw3Targets.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glm\glmConfig.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glm\glmConfigVersion.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\nlohmann_json\nlohmann_jsonConfig.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\nlohmann_json\nlohmann_jsonConfigVersion.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\openal-soft\OpenALConfig.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\openal-soft\OpenALTargets.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\pybind11\pybind11Common.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\pybind11\pybind11Config.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\pybind11\pybind11ConfigVersion.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\pybind11\pybind11NewTools.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\pybind11\pybind11Targets.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\python\vcpkg-cmake-wrapper.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\locks\Downloads\AARTZE\AARTZE\build312\src\aartze\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/Users/locks/Downloads/AARTZE/AARTZE/src/aartze/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/locks/Downloads/AARTZE/AARTZE -BC:/Users/locks/Downloads/AARTZE/AARTZE/build312 --check-stamp-file C:/Users/locks/Downloads/AARTZE/AARTZE/build312/src/aartze/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Program Files\CMake\share\cmake-4.1\Modules\CMakeCheckCompilerFlagCommonPatterns.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CMakeFindDependencyMacro.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CheckCXXCompilerFlag.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CheckCXXSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\FindPython.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\FindPython\Support.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Internal\CheckCompilerFlag.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Internal\CheckFlagCommonConfig.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Internal\CheckSourceCompiles.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\assimp\assimpConfig.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\assimp\assimpConfigVersion.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\assimp\assimpTargets.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\bullet3\BulletConfig.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\bullet3\BulletConfigVersion.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\bullet3\BulletTargets.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\entt\EnTTConfig.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\entt\EnTTConfigVersion.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\entt\EnTTTargets.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glad\gladConfig.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glad\gladConfigVersion.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glad\gladTargets.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glfw3\glfw3Config.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glfw3\glfw3ConfigVersion.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glfw3\glfw3Targets.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glm\glmConfig.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glm\glmConfigVersion.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\nlohmann_json\nlohmann_jsonConfig.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\nlohmann_json\nlohmann_jsonConfigVersion.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\openal-soft\OpenALConfig.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\openal-soft\OpenALTargets.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\pybind11\pybind11Common.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\pybind11\pybind11Config.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\pybind11\pybind11ConfigVersion.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\pybind11\pybind11NewTools.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\pybind11\pybind11Targets.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\python\vcpkg-cmake-wrapper.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\locks\Downloads\AARTZE\AARTZE\build312\src\aartze\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="C:\Users\locks\Downloads\AARTZE\AARTZE\src\apps\sandbox\main.cpp" />
+    <Natvis Include="C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\nlohmann_json\nlohmann_json.natvis">
+    </Natvis>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="C:\Users\locks\Downloads\AARTZE\AARTZE\build312\ZERO_CHECK.vcxproj">
+      <Project>{3F7DDBE9-E1EB-3F64-80C1-F82234BA1E7B}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\locks\Downloads\AARTZE\AARTZE\build312\src\aartze\core\aartze_core.vcxproj">
+      <Project>{988B95E3-D90F-30C8-AE55-BBF0C5E8C5D4}</Project>
+      <Name>aartze_core</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\locks\Downloads\AARTZE\AARTZE\build312\src\aartze\ecs\aartze_ecs.vcxproj">
+      <Project>{61621069-7CDD-37C1-91F6-F94EEE0CB924}</Project>
+      <Name>aartze_ecs</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\locks\Downloads\AARTZE\AARTZE\build312\src\aartze\geometry\aartze_geometry.vcxproj">
+      <Project>{3C9378B2-3C92-391B-A037-D231BA1992A0}</Project>
+      <Name>aartze_geometry</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\locks\Downloads\AARTZE\AARTZE\build312\src\aartze\import\aartze_import.vcxproj">
+      <Project>{E9AD6D04-AD55-3BE8-A4B6-3A64BCCDA1C5}</Project>
+      <Name>aartze_import</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\locks\Downloads\AARTZE\AARTZE\build312\src\aartze\input\aartze_input.vcxproj">
+      <Project>{018BD189-5ACD-36A1-B962-BD4DD9B30AD9}</Project>
+      <Name>aartze_input</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\locks\Downloads\AARTZE\AARTZE\build312\src\aartze\physics\aartze_physics.vcxproj">
+      <Project>{D51D527B-976A-3215-88E0-DCDCE39AA6A7}</Project>
+      <Name>aartze_physics</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\locks\Downloads\AARTZE\AARTZE\build312\src\aartze\render\aartze_render.vcxproj">
+      <Project>{0E9C16F1-C9D4-31DC-9491-997C472F140C}</Project>
+      <Name>aartze_render</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\locks\Downloads\AARTZE\AARTZE\build312\src\aartze\scripting\aartze_scripting.vcxproj">
+      <Project>{67162231-2E9B-31FC-AA0A-60A792F59763}</Project>
+      <Name>aartze_scripting</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

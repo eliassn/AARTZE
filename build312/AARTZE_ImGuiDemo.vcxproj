@@ -1,0 +1,450 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{E1B1BECD-6B22-3A44-9427-67AF5DE3DD92}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <VcpkgEnabled>false</VcpkgEnabled>
+    <WindowsTargetPlatformVersion>10.0.22621.0</WindowsTargetPlatformVersion>
+    <Platform>x64</Platform>
+    <ProjectName>AARTZE_ImGuiDemo</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="do_not_import_user.props" Condition="exists('do_not_import_user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\locks\Downloads\AARTZE\AARTZE\build312\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">AARTZE_ImGuiDemo.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">AARTZE_ImGuiDemo</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\locks\Downloads\AARTZE\AARTZE\build312\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">AARTZE_ImGuiDemo.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">AARTZE_ImGuiDemo</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\locks\Downloads\AARTZE\AARTZE\build312\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">AARTZE_ImGuiDemo.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">AARTZE_ImGuiDemo</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\locks\Downloads\AARTZE\AARTZE\build312\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">AARTZE_ImGuiDemo.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">AARTZE_ImGuiDemo</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</GenerateManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\locks\Downloads\AARTZE\AARTZE\thirdparty\glm-master;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\editor;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\_deps\imguizmo-src;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\_deps\imnodes-src;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\runtime;C:\Users\locks\Downloads\AARTZE\AARTZE\thirdparty\imgui;C:\Users\locks\Downloads\AARTZE\AARTZE\thirdparty\imgui\backends;C:\Users\locks\Downloads\AARTZE\AARTZE;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\core;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\utils;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\components;C:\Users\locks\Downloads\AARTZE\AARTZE\NAFEngine\components;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\systems;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\World;\include;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\include\bullet;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "C:/Users/locks/Downloads/AARTZE/AARTZE/build312/vcpkg_installed/x64-windows/include"</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;AARTZE_WITH_IMGUI=1;IMGUI_IMPL_OPENGL_LOADER_GLAD;IMGUI_DEFINE_MATH_OPERATORS;GLFW_DLL;GLM_ENABLE_EXPERIMENTAL;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;AARTZE_WITH_IMGUI=1;IMGUI_IMPL_OPENGL_LOADER_GLAD;IMGUI_DEFINE_MATH_OPERATORS;GLFW_DLL;GLM_ENABLE_EXPERIMENTAL;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\locks\Downloads\AARTZE\AARTZE\thirdparty\glm-master;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\editor;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\_deps\imguizmo-src;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\_deps\imnodes-src;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\runtime;C:\Users\locks\Downloads\AARTZE\AARTZE\thirdparty\imgui;C:\Users\locks\Downloads\AARTZE\AARTZE\thirdparty\imgui\backends;C:\Users\locks\Downloads\AARTZE\AARTZE;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\core;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\utils;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\components;C:\Users\locks\Downloads\AARTZE\AARTZE\NAFEngine\components;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\systems;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\World;\include;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\include\bullet;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\locks\Downloads\AARTZE\AARTZE\thirdparty\glm-master;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\editor;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\_deps\imguizmo-src;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\_deps\imnodes-src;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\runtime;C:\Users\locks\Downloads\AARTZE\AARTZE\thirdparty\imgui;C:\Users\locks\Downloads\AARTZE\AARTZE\thirdparty\imgui\backends;C:\Users\locks\Downloads\AARTZE\AARTZE;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\core;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\utils;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\components;C:\Users\locks\Downloads\AARTZE\AARTZE\NAFEngine\components;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\systems;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\World;\include;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\include\bullet;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PostBuildEvent>
+      <Message></Message>
+      <Command>setlocal
+C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noprofile -executionpolicy Bypass -file C:/Users/locks/Downloads/AARTZE/AARTZE/vcpkg/scripts/buildsystems/msbuild/applocal.ps1 -targetBinary C:/Users/locks/Downloads/AARTZE/AARTZE/build312/Debug/AARTZE_ImGuiDemo.exe -installedDir C:/Users/locks/Downloads/AARTZE/AARTZE/build312/vcpkg_installed/x64-windows/debug/bin -OutVariable out
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PostBuildEvent>
+    <Link>
+      <AdditionalDependencies>Debug\AARTZE_imgui_editor.lib;Debug\AARTZE_lib.lib;Debug\imgui.lib;Debug\ImGuizmo.lib;Debug\imnodes_lib.lib;vcpkg_installed\x64-windows\debug\lib\glad.lib;opengl32.lib;vcpkg_installed\x64-windows\debug\lib\OpenAL32.lib;vcpkg_installed\x64-windows\debug\lib\Jolt.lib;comdlg32.lib;ole32.lib;vcpkg_installed\x64-windows\debug\lib\BulletInverseDynamics_Debug.lib;vcpkg_installed\x64-windows\debug\lib\Bullet3Common_Debug.lib;vcpkg_installed\x64-windows\debug\lib\BulletSoftBody_Debug.lib;vcpkg_installed\x64-windows\debug\lib\BulletDynamics_Debug.lib;vcpkg_installed\x64-windows\debug\lib\BulletCollision_Debug.lib;vcpkg_installed\x64-windows\debug\lib\LinearMath_Debug.lib;vcpkg_installed\x64-windows\debug\lib\BulletDynamics_Debug.lib;vcpkg_installed\x64-windows\debug\lib\BulletCollision_Debug.lib;vcpkg_installed\x64-windows\debug\lib\LinearMath_Debug.lib;vcpkg_installed\x64-windows\debug\lib\BulletSoftBody_Debug.lib;vcpkg_installed\x64-windows\debug\lib\glm.lib;Debug\imgui.lib;vcpkg_installed\x64-windows\debug\lib\glfw3dll.lib;opengl32.lib;vcpkg_installed\x64-windows\debug\lib\assimp-vc143-mtd.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <DataExecutionPrevention></DataExecutionPrevention>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImageHasSafeExceptionHandlers></ImageHasSafeExceptionHandlers>
+      <ImportLibrary>C:/Users/locks/Downloads/AARTZE/AARTZE/build312/Debug/AARTZE_ImGuiDemo.lib</ImportLibrary>
+      <LinkErrorReporting></LinkErrorReporting>
+      <ProgramDataBaseFile>C:/Users/locks/Downloads/AARTZE/AARTZE/build312/Debug/AARTZE_ImGuiDemo.pdb</ProgramDataBaseFile>
+      <RandomizedBaseAddress></RandomizedBaseAddress>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\locks\Downloads\AARTZE\AARTZE\thirdparty\glm-master;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\editor;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\_deps\imguizmo-src;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\_deps\imnodes-src;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\runtime;C:\Users\locks\Downloads\AARTZE\AARTZE\thirdparty\imgui;C:\Users\locks\Downloads\AARTZE\AARTZE\thirdparty\imgui\backends;C:\Users\locks\Downloads\AARTZE\AARTZE;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\core;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\utils;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\components;C:\Users\locks\Downloads\AARTZE\AARTZE\NAFEngine\components;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\systems;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\World;\include;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\include\bullet;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "C:/Users/locks/Downloads/AARTZE/AARTZE/build312/vcpkg_installed/x64-windows/include"</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;AARTZE_WITH_IMGUI=1;IMGUI_IMPL_OPENGL_LOADER_GLAD;IMGUI_DEFINE_MATH_OPERATORS;GLFW_DLL;GLM_ENABLE_EXPERIMENTAL;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;AARTZE_WITH_IMGUI=1;IMGUI_IMPL_OPENGL_LOADER_GLAD;IMGUI_DEFINE_MATH_OPERATORS;GLFW_DLL;GLM_ENABLE_EXPERIMENTAL;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\locks\Downloads\AARTZE\AARTZE\thirdparty\glm-master;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\editor;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\_deps\imguizmo-src;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\_deps\imnodes-src;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\runtime;C:\Users\locks\Downloads\AARTZE\AARTZE\thirdparty\imgui;C:\Users\locks\Downloads\AARTZE\AARTZE\thirdparty\imgui\backends;C:\Users\locks\Downloads\AARTZE\AARTZE;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\core;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\utils;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\components;C:\Users\locks\Downloads\AARTZE\AARTZE\NAFEngine\components;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\systems;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\World;\include;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\include\bullet;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\locks\Downloads\AARTZE\AARTZE\thirdparty\glm-master;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\editor;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\_deps\imguizmo-src;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\_deps\imnodes-src;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\runtime;C:\Users\locks\Downloads\AARTZE\AARTZE\thirdparty\imgui;C:\Users\locks\Downloads\AARTZE\AARTZE\thirdparty\imgui\backends;C:\Users\locks\Downloads\AARTZE\AARTZE;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\core;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\utils;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\components;C:\Users\locks\Downloads\AARTZE\AARTZE\NAFEngine\components;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\systems;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\World;\include;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\include\bullet;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PostBuildEvent>
+      <Message></Message>
+      <Command>setlocal
+C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noprofile -executionpolicy Bypass -file C:/Users/locks/Downloads/AARTZE/AARTZE/vcpkg/scripts/buildsystems/msbuild/applocal.ps1 -targetBinary C:/Users/locks/Downloads/AARTZE/AARTZE/build312/Release/AARTZE_ImGuiDemo.exe -installedDir C:/Users/locks/Downloads/AARTZE/AARTZE/build312/vcpkg_installed/x64-windows/bin -OutVariable out
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PostBuildEvent>
+    <Link>
+      <AdditionalDependencies>Release\AARTZE_imgui_editor.lib;Release\AARTZE_lib.lib;Release\imgui.lib;Release\ImGuizmo.lib;Release\imnodes_lib.lib;vcpkg_installed\x64-windows\lib\glad.lib;opengl32.lib;vcpkg_installed\x64-windows\lib\OpenAL32.lib;vcpkg_installed\x64-windows\lib\Jolt.lib;comdlg32.lib;ole32.lib;vcpkg_installed\x64-windows\lib\BulletInverseDynamics.lib;vcpkg_installed\x64-windows\lib\Bullet3Common.lib;vcpkg_installed\x64-windows\lib\BulletSoftBody.lib;vcpkg_installed\x64-windows\lib\BulletDynamics.lib;vcpkg_installed\x64-windows\lib\BulletCollision.lib;vcpkg_installed\x64-windows\lib\LinearMath.lib;vcpkg_installed\x64-windows\lib\BulletDynamics.lib;vcpkg_installed\x64-windows\lib\BulletCollision.lib;vcpkg_installed\x64-windows\lib\LinearMath.lib;vcpkg_installed\x64-windows\lib\BulletSoftBody.lib;vcpkg_installed\x64-windows\lib\glm.lib;Release\imgui.lib;vcpkg_installed\x64-windows\lib\glfw3dll.lib;opengl32.lib;vcpkg_installed\x64-windows\lib\assimp-vc143-mt.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <DataExecutionPrevention></DataExecutionPrevention>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImageHasSafeExceptionHandlers></ImageHasSafeExceptionHandlers>
+      <ImportLibrary>C:/Users/locks/Downloads/AARTZE/AARTZE/build312/Release/AARTZE_ImGuiDemo.lib</ImportLibrary>
+      <LinkErrorReporting></LinkErrorReporting>
+      <ProgramDataBaseFile>C:/Users/locks/Downloads/AARTZE/AARTZE/build312/Release/AARTZE_ImGuiDemo.pdb</ProgramDataBaseFile>
+      <RandomizedBaseAddress></RandomizedBaseAddress>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\locks\Downloads\AARTZE\AARTZE\thirdparty\glm-master;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\editor;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\_deps\imguizmo-src;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\_deps\imnodes-src;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\runtime;C:\Users\locks\Downloads\AARTZE\AARTZE\thirdparty\imgui;C:\Users\locks\Downloads\AARTZE\AARTZE\thirdparty\imgui\backends;C:\Users\locks\Downloads\AARTZE\AARTZE;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\core;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\utils;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\components;C:\Users\locks\Downloads\AARTZE\AARTZE\NAFEngine\components;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\systems;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\World;\include;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\include\bullet;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "C:/Users/locks/Downloads/AARTZE/AARTZE/build312/vcpkg_installed/x64-windows/include"</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;AARTZE_WITH_IMGUI=1;IMGUI_IMPL_OPENGL_LOADER_GLAD;IMGUI_DEFINE_MATH_OPERATORS;GLFW_DLL;GLM_ENABLE_EXPERIMENTAL;CMAKE_INTDIR="MinSizeRel"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;AARTZE_WITH_IMGUI=1;IMGUI_IMPL_OPENGL_LOADER_GLAD;IMGUI_DEFINE_MATH_OPERATORS;GLFW_DLL;GLM_ENABLE_EXPERIMENTAL;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\locks\Downloads\AARTZE\AARTZE\thirdparty\glm-master;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\editor;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\_deps\imguizmo-src;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\_deps\imnodes-src;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\runtime;C:\Users\locks\Downloads\AARTZE\AARTZE\thirdparty\imgui;C:\Users\locks\Downloads\AARTZE\AARTZE\thirdparty\imgui\backends;C:\Users\locks\Downloads\AARTZE\AARTZE;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\core;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\utils;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\components;C:\Users\locks\Downloads\AARTZE\AARTZE\NAFEngine\components;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\systems;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\World;\include;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\include\bullet;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\locks\Downloads\AARTZE\AARTZE\thirdparty\glm-master;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\editor;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\_deps\imguizmo-src;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\_deps\imnodes-src;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\runtime;C:\Users\locks\Downloads\AARTZE\AARTZE\thirdparty\imgui;C:\Users\locks\Downloads\AARTZE\AARTZE\thirdparty\imgui\backends;C:\Users\locks\Downloads\AARTZE\AARTZE;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\core;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\utils;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\components;C:\Users\locks\Downloads\AARTZE\AARTZE\NAFEngine\components;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\systems;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\World;\include;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\include\bullet;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PostBuildEvent>
+      <Message></Message>
+      <Command>setlocal
+C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noprofile -executionpolicy Bypass -file C:/Users/locks/Downloads/AARTZE/AARTZE/vcpkg/scripts/buildsystems/msbuild/applocal.ps1 -targetBinary C:/Users/locks/Downloads/AARTZE/AARTZE/build312/MinSizeRel/AARTZE_ImGuiDemo.exe -installedDir C:/Users/locks/Downloads/AARTZE/AARTZE/build312/vcpkg_installed/x64-windows/bin -OutVariable out
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PostBuildEvent>
+    <Link>
+      <AdditionalDependencies>MinSizeRel\AARTZE_imgui_editor.lib;MinSizeRel\AARTZE_lib.lib;MinSizeRel\imgui.lib;MinSizeRel\ImGuizmo.lib;MinSizeRel\imnodes_lib.lib;vcpkg_installed\x64-windows\lib\glad.lib;opengl32.lib;vcpkg_installed\x64-windows\lib\OpenAL32.lib;vcpkg_installed\x64-windows\lib\Jolt.lib;comdlg32.lib;ole32.lib;vcpkg_installed\x64-windows\lib\BulletInverseDynamics.lib;vcpkg_installed\x64-windows\lib\Bullet3Common.lib;vcpkg_installed\x64-windows\lib\BulletSoftBody.lib;vcpkg_installed\x64-windows\lib\BulletDynamics.lib;vcpkg_installed\x64-windows\lib\BulletCollision.lib;vcpkg_installed\x64-windows\lib\LinearMath.lib;vcpkg_installed\x64-windows\lib\BulletDynamics.lib;vcpkg_installed\x64-windows\lib\BulletCollision.lib;vcpkg_installed\x64-windows\lib\LinearMath.lib;vcpkg_installed\x64-windows\lib\BulletSoftBody.lib;vcpkg_installed\x64-windows\lib\glm.lib;MinSizeRel\imgui.lib;vcpkg_installed\x64-windows\lib\glfw3dll.lib;opengl32.lib;vcpkg_installed\x64-windows\lib\assimp-vc143-mt.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <DataExecutionPrevention></DataExecutionPrevention>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImageHasSafeExceptionHandlers></ImageHasSafeExceptionHandlers>
+      <ImportLibrary>C:/Users/locks/Downloads/AARTZE/AARTZE/build312/MinSizeRel/AARTZE_ImGuiDemo.lib</ImportLibrary>
+      <LinkErrorReporting></LinkErrorReporting>
+      <ProgramDataBaseFile>C:/Users/locks/Downloads/AARTZE/AARTZE/build312/MinSizeRel/AARTZE_ImGuiDemo.pdb</ProgramDataBaseFile>
+      <RandomizedBaseAddress></RandomizedBaseAddress>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\locks\Downloads\AARTZE\AARTZE\thirdparty\glm-master;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\editor;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\_deps\imguizmo-src;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\_deps\imnodes-src;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\runtime;C:\Users\locks\Downloads\AARTZE\AARTZE\thirdparty\imgui;C:\Users\locks\Downloads\AARTZE\AARTZE\thirdparty\imgui\backends;C:\Users\locks\Downloads\AARTZE\AARTZE;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\core;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\utils;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\components;C:\Users\locks\Downloads\AARTZE\AARTZE\NAFEngine\components;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\systems;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\World;\include;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\include\bullet;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "C:/Users/locks/Downloads/AARTZE/AARTZE/build312/vcpkg_installed/x64-windows/include"</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MinimalRebuild></MinimalRebuild>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <UseFullPaths>false</UseFullPaths>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;AARTZE_WITH_IMGUI=1;IMGUI_IMPL_OPENGL_LOADER_GLAD;IMGUI_DEFINE_MATH_OPERATORS;GLFW_DLL;GLM_ENABLE_EXPERIMENTAL;CMAKE_INTDIR="RelWithDebInfo"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;AARTZE_WITH_IMGUI=1;IMGUI_IMPL_OPENGL_LOADER_GLAD;IMGUI_DEFINE_MATH_OPERATORS;GLFW_DLL;GLM_ENABLE_EXPERIMENTAL;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\locks\Downloads\AARTZE\AARTZE\thirdparty\glm-master;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\editor;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\_deps\imguizmo-src;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\_deps\imnodes-src;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\runtime;C:\Users\locks\Downloads\AARTZE\AARTZE\thirdparty\imgui;C:\Users\locks\Downloads\AARTZE\AARTZE\thirdparty\imgui\backends;C:\Users\locks\Downloads\AARTZE\AARTZE;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\core;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\utils;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\components;C:\Users\locks\Downloads\AARTZE\AARTZE\NAFEngine\components;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\systems;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\World;\include;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\include\bullet;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\locks\Downloads\AARTZE\AARTZE\thirdparty\glm-master;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\editor;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\_deps\imguizmo-src;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\_deps\imnodes-src;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\runtime;C:\Users\locks\Downloads\AARTZE\AARTZE\thirdparty\imgui;C:\Users\locks\Downloads\AARTZE\AARTZE\thirdparty\imgui\backends;C:\Users\locks\Downloads\AARTZE\AARTZE;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\core;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\utils;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\components;C:\Users\locks\Downloads\AARTZE\AARTZE\NAFEngine\components;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\systems;C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\World;\include;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\include\bullet;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PostBuildEvent>
+      <Message></Message>
+      <Command>setlocal
+C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noprofile -executionpolicy Bypass -file C:/Users/locks/Downloads/AARTZE/AARTZE/vcpkg/scripts/buildsystems/msbuild/applocal.ps1 -targetBinary C:/Users/locks/Downloads/AARTZE/AARTZE/build312/RelWithDebInfo/AARTZE_ImGuiDemo.exe -installedDir C:/Users/locks/Downloads/AARTZE/AARTZE/build312/vcpkg_installed/x64-windows/bin -OutVariable out
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PostBuildEvent>
+    <Link>
+      <AdditionalDependencies>RelWithDebInfo\AARTZE_imgui_editor.lib;RelWithDebInfo\AARTZE_lib.lib;RelWithDebInfo\imgui.lib;RelWithDebInfo\ImGuizmo.lib;RelWithDebInfo\imnodes_lib.lib;vcpkg_installed\x64-windows\lib\glad.lib;opengl32.lib;vcpkg_installed\x64-windows\lib\OpenAL32.lib;vcpkg_installed\x64-windows\lib\Jolt.lib;comdlg32.lib;ole32.lib;vcpkg_installed\x64-windows\lib\BulletInverseDynamics.lib;vcpkg_installed\x64-windows\lib\Bullet3Common.lib;vcpkg_installed\x64-windows\lib\BulletSoftBody.lib;vcpkg_installed\x64-windows\lib\BulletDynamics.lib;vcpkg_installed\x64-windows\lib\BulletCollision.lib;vcpkg_installed\x64-windows\lib\LinearMath.lib;vcpkg_installed\x64-windows\lib\BulletDynamics.lib;vcpkg_installed\x64-windows\lib\BulletCollision.lib;vcpkg_installed\x64-windows\lib\LinearMath.lib;vcpkg_installed\x64-windows\lib\BulletSoftBody.lib;vcpkg_installed\x64-windows\lib\glm.lib;RelWithDebInfo\imgui.lib;vcpkg_installed\x64-windows\lib\glfw3dll.lib;opengl32.lib;vcpkg_installed\x64-windows\lib\assimp-vc143-mt.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <DataExecutionPrevention></DataExecutionPrevention>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImageHasSafeExceptionHandlers></ImageHasSafeExceptionHandlers>
+      <ImportLibrary>C:/Users/locks/Downloads/AARTZE/AARTZE/build312/RelWithDebInfo/AARTZE_ImGuiDemo.lib</ImportLibrary>
+      <LinkErrorReporting></LinkErrorReporting>
+      <ProgramDataBaseFile>C:/Users/locks/Downloads/AARTZE/AARTZE/build312/RelWithDebInfo/AARTZE_ImGuiDemo.pdb</ProgramDataBaseFile>
+      <RandomizedBaseAddress></RandomizedBaseAddress>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\locks\Downloads\AARTZE\AARTZE\CMakeLists.txt">
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/locks/Downloads/AARTZE/AARTZE/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/locks/Downloads/AARTZE/AARTZE -BC:/Users/locks/Downloads/AARTZE/AARTZE/build312 --check-stamp-file C:/Users/locks/Downloads/AARTZE/AARTZE/build312/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Program Files\CMake\share\cmake-4.1\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CMakeDependentOption.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CMakeFindDependencyMacro.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CheckCXXCompilerFlag.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\ExternalProject\shared_internal_commands.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\FetchContent.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\FetchContent\CMakeLists.cmake.in;C:\Program Files\CMake\share\cmake-4.1\Modules\FindBullet.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\FindGit.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\FindLua.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\FindOpenGL.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\FindPython.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\FindPython\Support.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\FindThreads.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Internal\CMakeCLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Internal\CMakeCXXLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Internal\CMakeCommonLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Internal\CheckSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Linker\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Linker\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Linker\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Platform\Linker\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Platform\Linker\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Platform\WindowsPaths.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\CMakeFiles\4.1.1\CMakeCCompiler.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\CMakeFiles\4.1.1\CMakeCXXCompiler.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\CMakeFiles\4.1.1\CMakeRCCompiler.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\CMakeFiles\4.1.1\CMakeSystem.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\Jolt\JoltConfig-debug.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\Jolt\JoltConfig-release.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\Jolt\JoltConfig.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\assimp\assimpConfig.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\assimp\assimpConfigVersion.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\assimp\assimpTargets-debug.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\assimp\assimpTargets-release.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\assimp\assimpTargets.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\bullet3\BulletConfig.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\bullet3\BulletConfigVersion.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\bullet3\BulletTargets-debug.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\bullet3\BulletTargets-release.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\bullet3\BulletTargets.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\entt\EnTTConfig.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\entt\EnTTConfigVersion.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\entt\EnTTTargets.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\fmt\fmt-config-version.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\fmt\fmt-config.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\fmt\fmt-targets-debug.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\fmt\fmt-targets-release.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\fmt\fmt-targets.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glad\gladConfig.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glad\gladConfigVersion.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glad\gladTargets-debug.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glad\gladTargets-release.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glad\gladTargets.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glfw3\glfw3Config.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glfw3\glfw3ConfigVersion.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glfw3\glfw3Targets-debug.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glfw3\glfw3Targets-release.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glfw3\glfw3Targets.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glm\glmConfig-debug.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glm\glmConfig-release.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glm\glmConfig.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glm\glmConfigVersion.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\nlohmann_json\nlohmann_jsonConfig.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\nlohmann_json\nlohmann_jsonConfigVersion.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\nlohmann_json\nlohmann_jsonTargets.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\openal-soft\OpenALConfig.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\openal-soft\OpenALTargets-debug.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\openal-soft\OpenALTargets-release.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\openal-soft\OpenALTargets.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\pybind11\pybind11Common.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\pybind11\pybind11Config.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\pybind11\pybind11ConfigVersion.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\pybind11\pybind11NewTools.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\pybind11\pybind11Targets.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\python\vcpkg-cmake-wrapper.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\vcpkg.json;C:\Users\locks\Downloads\AARTZE\AARTZE\vcpkg\scripts\buildsystems\vcpkg.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\locks\Downloads\AARTZE\AARTZE\build312\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/locks/Downloads/AARTZE/AARTZE/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/locks/Downloads/AARTZE/AARTZE -BC:/Users/locks/Downloads/AARTZE/AARTZE/build312 --check-stamp-file C:/Users/locks/Downloads/AARTZE/AARTZE/build312/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Program Files\CMake\share\cmake-4.1\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CMakeDependentOption.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CMakeFindDependencyMacro.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CheckCXXCompilerFlag.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\ExternalProject\shared_internal_commands.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\FetchContent.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\FetchContent\CMakeLists.cmake.in;C:\Program Files\CMake\share\cmake-4.1\Modules\FindBullet.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\FindGit.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\FindLua.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\FindOpenGL.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\FindPython.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\FindPython\Support.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\FindThreads.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Internal\CMakeCLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Internal\CMakeCXXLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Internal\CMakeCommonLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Internal\CheckSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Linker\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Linker\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Linker\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Platform\Linker\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Platform\Linker\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Platform\WindowsPaths.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\CMakeFiles\4.1.1\CMakeCCompiler.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\CMakeFiles\4.1.1\CMakeCXXCompiler.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\CMakeFiles\4.1.1\CMakeRCCompiler.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\CMakeFiles\4.1.1\CMakeSystem.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\Jolt\JoltConfig-debug.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\Jolt\JoltConfig-release.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\Jolt\JoltConfig.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\assimp\assimpConfig.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\assimp\assimpConfigVersion.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\assimp\assimpTargets-debug.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\assimp\assimpTargets-release.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\assimp\assimpTargets.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\bullet3\BulletConfig.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\bullet3\BulletConfigVersion.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\bullet3\BulletTargets-debug.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\bullet3\BulletTargets-release.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\bullet3\BulletTargets.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\entt\EnTTConfig.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\entt\EnTTConfigVersion.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\entt\EnTTTargets.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\fmt\fmt-config-version.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\fmt\fmt-config.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\fmt\fmt-targets-debug.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\fmt\fmt-targets-release.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\fmt\fmt-targets.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glad\gladConfig.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glad\gladConfigVersion.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glad\gladTargets-debug.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glad\gladTargets-release.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glad\gladTargets.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glfw3\glfw3Config.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glfw3\glfw3ConfigVersion.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glfw3\glfw3Targets-debug.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glfw3\glfw3Targets-release.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glfw3\glfw3Targets.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glm\glmConfig-debug.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glm\glmConfig-release.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glm\glmConfig.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glm\glmConfigVersion.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\nlohmann_json\nlohmann_jsonConfig.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\nlohmann_json\nlohmann_jsonConfigVersion.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\nlohmann_json\nlohmann_jsonTargets.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\openal-soft\OpenALConfig.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\openal-soft\OpenALTargets-debug.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\openal-soft\OpenALTargets-release.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\openal-soft\OpenALTargets.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\pybind11\pybind11Common.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\pybind11\pybind11Config.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\pybind11\pybind11ConfigVersion.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\pybind11\pybind11NewTools.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\pybind11\pybind11Targets.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\python\vcpkg-cmake-wrapper.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\vcpkg.json;C:\Users\locks\Downloads\AARTZE\AARTZE\vcpkg\scripts\buildsystems\vcpkg.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\locks\Downloads\AARTZE\AARTZE\build312\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/Users/locks/Downloads/AARTZE/AARTZE/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/locks/Downloads/AARTZE/AARTZE -BC:/Users/locks/Downloads/AARTZE/AARTZE/build312 --check-stamp-file C:/Users/locks/Downloads/AARTZE/AARTZE/build312/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Program Files\CMake\share\cmake-4.1\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CMakeDependentOption.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CMakeFindDependencyMacro.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CheckCXXCompilerFlag.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\ExternalProject\shared_internal_commands.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\FetchContent.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\FetchContent\CMakeLists.cmake.in;C:\Program Files\CMake\share\cmake-4.1\Modules\FindBullet.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\FindGit.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\FindLua.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\FindOpenGL.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\FindPython.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\FindPython\Support.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\FindThreads.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Internal\CMakeCLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Internal\CMakeCXXLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Internal\CMakeCommonLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Internal\CheckSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Linker\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Linker\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Linker\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Platform\Linker\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Platform\Linker\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Platform\WindowsPaths.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\CMakeFiles\4.1.1\CMakeCCompiler.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\CMakeFiles\4.1.1\CMakeCXXCompiler.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\CMakeFiles\4.1.1\CMakeRCCompiler.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\CMakeFiles\4.1.1\CMakeSystem.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\Jolt\JoltConfig-debug.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\Jolt\JoltConfig-release.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\Jolt\JoltConfig.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\assimp\assimpConfig.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\assimp\assimpConfigVersion.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\assimp\assimpTargets-debug.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\assimp\assimpTargets-release.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\assimp\assimpTargets.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\bullet3\BulletConfig.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\bullet3\BulletConfigVersion.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\bullet3\BulletTargets-debug.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\bullet3\BulletTargets-release.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\bullet3\BulletTargets.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\entt\EnTTConfig.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\entt\EnTTConfigVersion.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\entt\EnTTTargets.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\fmt\fmt-config-version.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\fmt\fmt-config.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\fmt\fmt-targets-debug.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\fmt\fmt-targets-release.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\fmt\fmt-targets.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glad\gladConfig.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glad\gladConfigVersion.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glad\gladTargets-debug.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glad\gladTargets-release.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glad\gladTargets.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glfw3\glfw3Config.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glfw3\glfw3ConfigVersion.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glfw3\glfw3Targets-debug.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glfw3\glfw3Targets-release.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glfw3\glfw3Targets.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glm\glmConfig-debug.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glm\glmConfig-release.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glm\glmConfig.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glm\glmConfigVersion.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\nlohmann_json\nlohmann_jsonConfig.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\nlohmann_json\nlohmann_jsonConfigVersion.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\nlohmann_json\nlohmann_jsonTargets.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\openal-soft\OpenALConfig.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\openal-soft\OpenALTargets-debug.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\openal-soft\OpenALTargets-release.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\openal-soft\OpenALTargets.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\pybind11\pybind11Common.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\pybind11\pybind11Config.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\pybind11\pybind11ConfigVersion.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\pybind11\pybind11NewTools.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\pybind11\pybind11Targets.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\python\vcpkg-cmake-wrapper.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\vcpkg.json;C:\Users\locks\Downloads\AARTZE\AARTZE\vcpkg\scripts\buildsystems\vcpkg.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\locks\Downloads\AARTZE\AARTZE\build312\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/Users/locks/Downloads/AARTZE/AARTZE/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/locks/Downloads/AARTZE/AARTZE -BC:/Users/locks/Downloads/AARTZE/AARTZE/build312 --check-stamp-file C:/Users/locks/Downloads/AARTZE/AARTZE/build312/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Program Files\CMake\share\cmake-4.1\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CMakeDependentOption.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CMakeFindDependencyMacro.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CheckCSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CheckCXXCompilerFlag.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CheckIncludeFile.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\CheckLibraryExists.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\ExternalProject\shared_internal_commands.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\FetchContent.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\FetchContent\CMakeLists.cmake.in;C:\Program Files\CMake\share\cmake-4.1\Modules\FindBullet.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\FindGit.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\FindLua.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\FindOpenGL.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\FindPython.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\FindPython\Support.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\FindThreads.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Internal\CMakeCLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Internal\CMakeCXXLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Internal\CMakeCommonLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Internal\CheckSourceCompiles.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Linker\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Linker\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Linker\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Platform\Linker\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Platform\Linker\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-4.1\Modules\Platform\WindowsPaths.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\CMakeFiles\4.1.1\CMakeCCompiler.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\CMakeFiles\4.1.1\CMakeCXXCompiler.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\CMakeFiles\4.1.1\CMakeRCCompiler.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\CMakeFiles\4.1.1\CMakeSystem.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\Jolt\JoltConfig-debug.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\Jolt\JoltConfig-release.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\Jolt\JoltConfig.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\assimp\assimpConfig.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\assimp\assimpConfigVersion.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\assimp\assimpTargets-debug.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\assimp\assimpTargets-release.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\assimp\assimpTargets.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\bullet3\BulletConfig.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\bullet3\BulletConfigVersion.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\bullet3\BulletTargets-debug.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\bullet3\BulletTargets-release.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\bullet3\BulletTargets.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\entt\EnTTConfig.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\entt\EnTTConfigVersion.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\entt\EnTTTargets.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\fmt\fmt-config-version.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\fmt\fmt-config.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\fmt\fmt-targets-debug.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\fmt\fmt-targets-release.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\fmt\fmt-targets.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glad\gladConfig.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glad\gladConfigVersion.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glad\gladTargets-debug.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glad\gladTargets-release.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glad\gladTargets.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glfw3\glfw3Config.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glfw3\glfw3ConfigVersion.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glfw3\glfw3Targets-debug.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glfw3\glfw3Targets-release.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glfw3\glfw3Targets.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glm\glmConfig-debug.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glm\glmConfig-release.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glm\glmConfig.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\glm\glmConfigVersion.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\nlohmann_json\nlohmann_jsonConfig.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\nlohmann_json\nlohmann_jsonConfigVersion.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\nlohmann_json\nlohmann_jsonTargets.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\openal-soft\OpenALConfig.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\openal-soft\OpenALTargets-debug.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\openal-soft\OpenALTargets-release.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\openal-soft\OpenALTargets.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\pybind11\pybind11Common.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\pybind11\pybind11Config.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\pybind11\pybind11ConfigVersion.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\pybind11\pybind11NewTools.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\pybind11\pybind11Targets.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\build312\vcpkg_installed\x64-windows\share\python\vcpkg-cmake-wrapper.cmake;C:\Users\locks\Downloads\AARTZE\AARTZE\vcpkg.json;C:\Users\locks\Downloads\AARTZE\AARTZE\vcpkg\scripts\buildsystems\vcpkg.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\locks\Downloads\AARTZE\AARTZE\build312\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="C:\Users\locks\Downloads\AARTZE\AARTZE\AARTZE\editor\app_main.cpp" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="C:\Users\locks\Downloads\AARTZE\AARTZE\build312\ZERO_CHECK.vcxproj">
+      <Project>{3F7DDBE9-E1EB-3F64-80C1-F82234BA1E7B}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\locks\Downloads\AARTZE\AARTZE\build312\AARTZE_imgui_editor.vcxproj">
+      <Project>{A628612F-B205-3502-A4B0-8C44E3B5A2B2}</Project>
+      <Name>AARTZE_imgui_editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\locks\Downloads\AARTZE\AARTZE\build312\AARTZE_lib.vcxproj">
+      <Project>{407F6C63-7810-3115-BCA9-8629068E3B29}</Project>
+      <Name>AARTZE_lib</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\locks\Downloads\AARTZE\AARTZE\build312\ImGuizmo.vcxproj">
+      <Project>{273EE05D-89DB-34DE-A8B7-A529D95A0241}</Project>
+      <Name>ImGuizmo</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\locks\Downloads\AARTZE\AARTZE\build312\imgui.vcxproj">
+      <Project>{635EF27B-1607-3D16-A95D-4579C209963E}</Project>
+      <Name>imgui</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\locks\Downloads\AARTZE\AARTZE\build312\imnodes_lib.vcxproj">
+      <Project>{454F70C3-93D7-3643-B1DA-A2E010617D5C}</Project>
+      <Name>imnodes_lib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

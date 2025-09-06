@@ -134,16 +134,18 @@ try {
 } catch { Write-Warning "vcpkg check failed: $_" }
 
 Write-Section "Configuring & building C++ binding (Python module)"
-& cmake --preset windows-vs -DBUILD_AARTZE_PYTHON=ON
-& cmake --build build --config Release
+& cmake --preset windows-vs -DBUILD_AARTZE_PYTHON=ON -DPython3_EXECUTABLE="$python"
+# Build only the pybind target for speed and to ensure correct Python tag
+& cmake --build build --config Release --target aartze_py
 
 # 5) Copy module next to the editor
 Write-Section "Locating built module"
-$pyd = Get-ChildItem -Recurse -ErrorAction SilentlyContinue (Join-Path $PSScriptRoot "build") -Include "aartzepy*.pyd","aartze*.pyd" | Select-Object -First 1
+# Prefer the .pyd that matches the venv Python version (cp{maj}{min})
+$tag = "cp$maj$min"
+$pyd = Get-ChildItem -Recurse -ErrorAction SilentlyContinue (Join-Path $PSScriptRoot "build") -Include "aartzepy.$tag-win_amd64.pyd" | Sort-Object LastWriteTime -Descending | Select-Object -First 1
 if (-not $pyd) {
-  Write-Warning "Python module not found after Release build. Trying Debug build..."
-  & cmake --build (Join-Path $PSScriptRoot "build") --config Debug
-  $pyd = Get-ChildItem -Recurse -ErrorAction SilentlyContinue (Join-Path $PSScriptRoot "build") -Include "aartzepy*.pyd","aartze*.pyd" | Select-Object -First 1
+  Write-Warning "Python module with tag $tag not found after Release build. Searching for any aartzepy*.pyd..."
+  $pyd = Get-ChildItem -Recurse -ErrorAction SilentlyContinue (Join-Path $PSScriptRoot "build") -Include "aartzepy*.pyd" | Sort-Object LastWriteTime -Descending | Select-Object -First 1
 }
 if (-not $pyd) { Write-Error "Could not find Python .pyd in build/ (did the build succeed?)" }
 $dst = Join-Path $PSScriptRoot "editor_py"

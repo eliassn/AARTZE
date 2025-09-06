@@ -1,12 +1,16 @@
 from PySide6 import QtOpenGLWidgets, QtCore, QtGui
 
-# Try engine bindings (prefer 'aartze', then 'aartzepy').
+# Try engine bindings (prefer 'aartzepy', then 'aartze').
+eng = None
+_eng_err = None
 try:
-    import aartze as eng
-except Exception:
+    import aartzepy as eng
+except Exception as _e:
+    _eng_err = _e
     try:
-        import aartzepy as eng
-    except Exception:
+        import aartze as eng
+    except Exception as _e2:
+        _eng_err = (_eng_err, _e2)
         eng = None
 
 
@@ -48,6 +52,11 @@ class GLViewport(QtOpenGLWidgets.QOpenGLWidget):
         try:
             if eng:
                 eng.init()
+                # Debug: print which module is loaded
+                try:
+                    print(f"[AARTZE] Engine module: {getattr(eng, '__file__', None)}")
+                except Exception:
+                    pass
                 # Pull initial cube transform if available
                 cid = int(eng.get_entity_id("Cube")) if hasattr(eng, 'get_entity_id') else -1
                 if cid >= 0 and hasattr(eng, 'get_transform'):
@@ -178,6 +187,12 @@ class GLViewport(QtOpenGLWidgets.QOpenGLWidget):
                 GL.glEnd()
             except Exception:
                 pass
+            # Warn overlay if engine module missing
+            if not eng and _eng_err:
+                p = QtGui.QPainter(self)
+                p.setPen(QtGui.QPen(QtGui.QColor('#f59e0b')))
+                p.drawText(12, 18, 'Engine module not loaded – using Python fallback')
+                p.end()
 
         # Axis triad overlay (Blender-like, top-right with circles)
         p = QtGui.QPainter(self)
@@ -219,15 +234,17 @@ class GLViewport(QtOpenGLWidgets.QOpenGLWidget):
     def mouseMoveEvent(self, e):
         if self._last is None:
             return
-        if e.modifiers() & QtCore.Qt.AltModifier:
+        # Camera controls: allow Alt+LMB, or always with MMB/RMB even without Alt
+        cam_gesture = (e.modifiers() & QtCore.Qt.AltModifier) or (e.buttons() & (QtCore.Qt.MiddleButton | QtCore.Qt.RightButton))
+        if cam_gesture:
             d = e.position() - self._last
             if eng:
                 try:
                     if e.buttons() & QtCore.Qt.LeftButton:
                         eng.camera_orbit_delta(float(-d.x()*0.3), float(-d.y()*0.3))
-                    elif e.buttons() & QtCore.Qt.MiddleButton:
+                    if e.buttons() & QtCore.Qt.MiddleButton:
                         eng.camera_pan_delta(float(d.x()*0.01), float(-d.y()*0.01))
-                    elif e.buttons() & QtCore.Qt.RightButton:
+                    if e.buttons() & QtCore.Qt.RightButton:
                         eng.camera_dolly_factor(float(1.0 - d.y()*0.005))
                 except Exception:
                     pass

@@ -20,8 +20,14 @@
 #include <array>
 #include <tuple>
 #include <algorithm>
+// Assimp and cgltf for importers
+#include <assimp/Importer.hpp>
+#include <assimp/scene.h>
+#include <assimp/postprocess.h>
+#include <cgltf.h>
 
 #include "aartze/render/scene/GizmoRenderer.h"
+#include "aartze/input/InputSystem.h"
 
 namespace py = pybind11;
 
@@ -35,6 +41,10 @@ struct Entity {
 static std::unordered_map<int, Entity> g_entities;
 static std::unordered_map<std::string,int> g_name_to_id;
 static int g_next_id = 1;
+
+// Minimal mesh store for imported assets (triangles only)
+struct Mesh { std::vector<float> pos; std::vector<float> nrm; };
+static std::unordered_map<int, Mesh> g_meshes; // entity id -> mesh
 
 // --- Simple orbit camera state (Blender-like) ---
 static float g_cam_target[3] = {0.f,0.f,0.f};
@@ -67,6 +77,16 @@ static int make_entity(const std::string& name){
 
 // Selection
 static int g_selected_id = -1;
+
+// ---- Gizmo state (used by render + input) ----
+static std::string g_gizmo_mode = ""; // move|rotate|scale
+static char g_gizmo_axis = 'x';
+static float g_drag_start_ndc[2] = {0,0};
+static float g_axis_ndc_dir[2] = {1,0};
+static float g_axis_ndc_len_per_world = 1.f; // |ndc(p+axis)-ndc(p)| for 1 world unit
+static Entity g_start_entity{};
+static char g_hover_axis = 0;
+static bool g_screen_axis = false;
 
 void EngineAPI::init(){
   if(!g_entities.empty()) return;
@@ -199,11 +219,69 @@ void EngineAPI::render(){
       glPushMatrix(); glTranslatef(e.tx, e.ty, e.tz); draw_camera_gizmo(); glPopMatrix();
     }
   }
-  // Cube
+  // Simple one-light setup for basic shading of solid geometry
+  glDisable(GL_TEXTURE_2D);
+  glEnable(GL_LIGHTING);
+  glEnable(GL_LIGHT0);
+  GLfloat lightDir[4]   = { -0.3f, 0.8f, 0.6f, 0.0f }; // directional
+  GLfloat lightDiff[4]  = { 0.9f, 0.9f, 0.9f, 1.0f };
+  GLfloat lightAmb [4]  = { 0.12f, 0.12f, 0.14f, 1.0f };
+  GLfloat lightSpec[4]  = { 0.2f, 0.2f, 0.2f, 1.0f };
+  glLightfv(GL_LIGHT0, GL_POSITION, lightDir);
+  glLightfv(GL_LIGHT0, GL_DIFFUSE,  lightDiff);
+  glLightfv(GL_LIGHT0, GL_AMBIENT,  lightAmb);
+  glLightfv(GL_LIGHT0, GL_SPECULAR, lightSpec);
+  glEnable(GL_COLOR_MATERIAL);
+  glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
+  glShadeModel(GL_SMOOTH);
+
+  // Cube or imported mesh attached to Cube entity
   if(auto it = g_name_to_id.find("Cube"); it!=g_name_to_id.end()){
     const auto& e = g_entities[it->second];
-    if(e.visible){ glPushMatrix(); glTranslatef(e.tx, e.ty-0.5f, e.tz); draw_cube(); glPopMatrix(); }
+    if(e.visible){
+      auto mit = g_meshes.find(it->second);
+      glPushMatrix(); glTranslatef(e.tx, e.ty-0.5f, e.tz);
+      if(mit == g_meshes.end() || mit->second.pos.empty()) draw_cube();
+      else {
+        const auto& m = mit->second;
+        size_t triCount = m.pos.size()/9; // 3 verts * 3 comps
+        glBegin(GL_TRIANGLES);
+        for(size_t t=0;t<triCount;++t){
+          size_t i = t*9; size_t in = t*9; // normals per-vertex
+          if(m.nrm.size()==m.pos.size()){
+            glNormal3f(m.nrm[in+0], m.nrm[in+1], m.nrm[in+2]);
+            glVertex3f(m.pos[i+0], m.pos[i+1], m.pos[i+2]);
+            glNormal3f(m.nrm[in+3], m.nrm[in+4], m.nrm[in+5]);
+            glVertex3f(m.pos[i+3], m.pos[i+4], m.pos[i+5]);
+            glNormal3f(m.nrm[in+6], m.nrm[in+7], m.nrm[in+8]);
+            glVertex3f(m.pos[i+6], m.pos[i+7], m.pos[i+8]);
+          } else {
+            glVertex3f(m.pos[i+0], m.pos[i+1], m.pos[i+2]);
+            glVertex3f(m.pos[i+3], m.pos[i+4], m.pos[i+5]);
+            glVertex3f(m.pos[i+6], m.pos[i+7], m.pos[i+8]);
+          }
+        }
+        glEnd();
+      }
+      glPopMatrix();
+    }
   }
+
+  // Draw other imported mesh entities
+  for(const auto& kv : g_meshes){
+    int id = kv.first; if(auto itE=g_entities.find(id); itE!=g_entities.end()){
+      const auto& e = itE->second; if(!e.visible) continue; if(e.name=="Cube") continue;
+      const auto& m = kv.second; if(m.pos.empty()) continue;
+      glPushMatrix(); glTranslatef(e.tx, e.ty, e.tz);
+      glBegin(GL_TRIANGLES);
+      size_t triCount = m.pos.size()/9;
+      for(size_t t=0;t<triCount;++t){ size_t i=t*9; size_t in=t*9; if(m.nrm.size()==m.pos.size()) glNormal3f(m.nrm[in+0], m.nrm[in+1], m.nrm[in+2]); glVertex3f(m.pos[i+0],m.pos[i+1],m.pos[i+2]); if(m.nrm.size()==m.pos.size()) glNormal3f(m.nrm[in+3], m.nrm[in+4], m.nrm[in+5]); glVertex3f(m.pos[i+3],m.pos[i+4],m.pos[i+5]); if(m.nrm.size()==m.pos.size()) glNormal3f(m.nrm[in+6], m.nrm[in+7], m.nrm[in+8]); glVertex3f(m.pos[i+6],m.pos[i+7],m.pos[i+8]); }
+      glEnd();
+      glPopMatrix();
+    }
+  }
+
+  glDisable(GL_LIGHTING);
 
   // Draw transform gizmo handles at selected entity pivot
   if(g_selected_id >= 0){
@@ -261,16 +339,6 @@ pybind11::list EngineAPI::scene_entities(){
   return lst;
 }
 void EngineAPI::scene_select(int id){ g_selected_id = id; }
-
-// ---- Gizmo (stub) ----
-static std::string g_gizmo_mode = ""; // move|rotate|scale
-static char g_gizmo_axis = 'x';
-static float g_drag_start_ndc[2] = {0,0};
-static float g_axis_ndc_dir[2] = {1,0};
-static float g_axis_ndc_len_per_world = 1.f; // |ndc(p+axis)-ndc(p)| for 1 world unit
-static Entity g_start_entity{};
-static char g_hover_axis = 0;
-static bool g_screen_axis = false;
 
 void EngineAPI::gizmo_set_mode(const char* mode){ g_gizmo_mode = mode?mode:""; }
 void EngineAPI::gizmo_set_axis(char axis){ g_gizmo_axis = axis; }
@@ -371,6 +439,54 @@ char EngineAPI::gizmo_hover(float ndc_x, float ndc_y){
   return g_hover_axis;
 }
 
+// ---- Importers ----
+static bool load_with_assimp(const std::string& path, Mesh& out){
+  Assimp::Importer imp; const aiScene* sc = imp.ReadFile(path, aiProcess_Triangulate | aiProcess_GenNormals | aiProcess_JoinIdenticalVertices);
+  if(!sc || !sc->mRootNode || sc->mNumMeshes==0) return false;
+  aiMesh* mesh = sc->mMeshes[0];
+  out.pos.clear(); out.nrm.clear();
+  out.pos.reserve(mesh->mNumFaces * 9);
+  if(mesh->HasNormals()) out.nrm.reserve(mesh->mNumFaces*9);
+  for(unsigned f=0; f<mesh->mNumFaces; ++f){
+    const aiFace& face = mesh->mFaces[f]; if(face.mNumIndices!=3) continue; for(unsigned i=0;i<3;++i){ unsigned idx = face.mIndices[i]; aiVector3D v = mesh->mVertices[idx]; out.pos.push_back(v.x); out.pos.push_back(v.y); out.pos.push_back(v.z); if(mesh->HasNormals()){ aiVector3D n = mesh->mNormals[idx]; out.nrm.push_back(n.x); out.nrm.push_back(n.y); out.nrm.push_back(n.z);} }
+  }
+  return !out.pos.empty();
+}
+static bool load_with_cgltf(const std::string& path, Mesh& out){
+  cgltf_options options{}; cgltf_data* data=nullptr; if(cgltf_parse_file(&options, path.c_str(), &data)!=cgltf_result_success) return false; cgltf_load_buffers(&options, data, path.c_str());
+  out.pos.clear(); out.nrm.clear();
+  bool ok=false;
+  for(size_t mi=0; mi<data->meshes_count && !ok; ++mi){ const cgltf_mesh& m = data->meshes[mi]; if(m.primitives_count==0) continue; const cgltf_primitive& p = m.primitives[0]; const cgltf_accessor* pos=nullptr; const cgltf_accessor* nrm=nullptr; for(size_t ai=0; ai<p.attributes_count; ++ai){ const auto& a = p.attributes[ai]; if(a.type==cgltf_attribute_type_position) pos=a.data; else if(a.type==cgltf_attribute_type_normal) nrm=a.data; }
+    if(!pos) continue; size_t vcount = pos->count; std::vector<float> tmpPos; tmpPos.reserve(vcount*3); for(size_t i=0;i<vcount;++i){ float v[3]; cgltf_accessor_read_float(pos, i, v, 3); tmpPos.push_back(v[0]); tmpPos.push_back(v[1]); tmpPos.push_back(v[2]); }
+    std::vector<unsigned int> idx; if(p.indices){ idx.resize(p.indices->count); for(size_t i=0;i<idx.size();++i){ idx[i]=(unsigned)cgltf_accessor_read_index(p.indices, i); } }
+    if(idx.empty()){ // assume sequential triangles
+      for(size_t i=0;i+2<vcount; i+=3){ out.pos.insert(out.pos.end(), {tmpPos[i*3+0],tmpPos[i*3+1],tmpPos[i*3+2], tmpPos[(i+1)*3+0],tmpPos[(i+1)*3+1],tmpPos[(i+1)*3+2], tmpPos[(i+2)*3+0],tmpPos[(i+2)*3+1],tmpPos[(i+2)*3+2]}); }
+    } else {
+      for(size_t i=0;i+2<idx.size(); i+=3){ unsigned a=idx[i], b=idx[i+1], c=idx[i+2]; out.pos.insert(out.pos.end(), {tmpPos[a*3+0],tmpPos[a*3+1],tmpPos[a*3+2], tmpPos[b*3+0],tmpPos[b*3+1],tmpPos[b*3+2], tmpPos[c*3+0],tmpPos[c*3+1],tmpPos[c*3+2]}); }
+    }
+    if(nrm){ size_t ncount = nrm->count; std::vector<float> tmpN; tmpN.reserve(ncount*3); for(size_t i=0;i<ncount;++i){ float v[3]; cgltf_accessor_read_float(nrm, i, v, 3); tmpN.push_back(v[0]); tmpN.push_back(v[1]); tmpN.push_back(v[2]); }
+      if(idx.empty()){ for(size_t i=0;i+2<ncount; i+=3){ out.nrm.insert(out.nrm.end(), {tmpN[i*3+0],tmpN[i*3+1],tmpN[i*3+2], tmpN[(i+1)*3+0],tmpN[(i+1)*3+1],tmpN[(i+1)*3+2], tmpN[(i+2)*3+0],tmpN[(i+2)*3+1],tmpN[(i+2)*3+2]}); } }
+      else { for(size_t i=0;i+2<idx.size(); i+=3){ unsigned a=idx[i], b=idx[i+1], c=idx[i+2]; out.nrm.insert(out.nrm.end(), {tmpN[a*3+0],tmpN[a*3+1],tmpN[a*3+2], tmpN[b*3+0],tmpN[b*3+1],tmpN[b*3+2], tmpN[c*3+0],tmpN[c*3+1],tmpN[c*3+2]}); } }
+    }
+    ok = !out.pos.empty();
+  }
+  cgltf_free(data);
+  return ok;
+}
+
+static std::string filenameStem(const std::string& p){ auto s = p; size_t slash = s.find_last_of("/\\"); if(slash!=std::string::npos) s = s.substr(slash+1); size_t dot = s.find_last_of('.'); if(dot!=std::string::npos) s = s.substr(0,dot); return s; }
+
+int import_file_impl(const std::string& path){
+  std::string lower = path; std::transform(lower.begin(), lower.end(), lower.begin(), ::tolower);
+  Mesh mesh; bool ok=false;
+  if(lower.rfind(".gltf")!=std::string::npos || lower.rfind(".glb")!=std::string::npos) ok = load_with_cgltf(path, mesh);
+  if(!ok) ok = load_with_assimp(path, mesh);
+  if(!ok) return -1;
+  int id = make_entity(filenameStem(path));
+  g_meshes[id] = std::move(mesh);
+  return id;
+}
+
 // Camera API
 void EngineAPI::camera_set_target(float x, float y, float z){ g_cam_target[0]=x; g_cam_target[1]=y; g_cam_target[2]=z; }
 void EngineAPI::camera_set_orbit(float yaw_deg, float pitch_deg, float dist){
@@ -384,7 +500,7 @@ void EngineAPI::camera_dolly_factor(float factor){ g_cam_dist = std::max(0.5f, s
 
 using namespace aartze::scripting;
 
-PYBIND11_MODULE(aartze, m){
+PYBIND11_MODULE(aartzepy, m){
   m.doc() = "AARTZE engine Python bridge (stub)";
   m.def("init", &EngineAPI::init);
   m.def("resize", &EngineAPI::resize);
@@ -414,4 +530,21 @@ PYBIND11_MODULE(aartze, m){
   m.def("camera_orbit_delta", &EngineAPI::camera_orbit_delta);
   m.def("camera_pan_delta", &EngineAPI::camera_pan_delta);
   m.def("camera_dolly_factor", &EngineAPI::camera_dolly_factor);
+
+  // -------- Input (gainput-backed stub) --------
+  m.def("input_create_map", [](const char* name){ aartze::input::Get().ensureMap(name?name:"default"); });
+  m.def("input_set_active_map", [](const char* name){ aartze::input::Get().setActiveMap(name?name:"default"); });
+  m.def("input_bind_action", [](const char* map, const char* action, const char* device, int code){
+    return aartze::input::Get().bindAction(map?map:"default", action?action:"Action", aartze::input::DeviceFromString(device?device:"keyboard"), code);
+  });
+  m.def("input_bind_axis", [](const char* map, const char* axis, const char* device, int code, float scale){
+    return aartze::input::Get().bindAxis(map?map:"default", axis?axis:"Axis", aartze::input::DeviceFromString(device?device:"keyboard"), code, scale);
+  }, py::arg("map"), py::arg("axis"), py::arg("device"), py::arg("code"), py::arg("scale") = 1.0f);
+  m.def("input_action", [](const char* action){ return aartze::input::Get().action(action?action:"Action"); });
+  m.def("input_axis",   [](const char* axis){ return aartze::input::Get().axis(axis?axis:"Axis"); });
+  m.def("input_feed_key", [](int key, bool down){ aartze::input::Get().feedKey(key, down); });
+  m.def("input_feed_mouse_button", [](int btn, bool down){ aartze::input::Get().feedMouseButton(btn, down); });
+  m.def("input_feed_mouse_move", [](float dx, float dy){ aartze::input::Get().feedMouseMove(dx, dy); });
+  // -------- Importers --------
+  m.def("import_file", [](const char* path){ if(!path) return -1; try{ return import_file_impl(path); } catch(...) { return -1; } });
 }

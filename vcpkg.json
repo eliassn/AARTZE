@@ -8,6 +8,9 @@
     "nlohmann-json",
     "assimp",
     "bullet3",
+    "joltphysics",
+    "gainput",
+    "cgltf",
     
     "pybind11",
     "glfw3",
